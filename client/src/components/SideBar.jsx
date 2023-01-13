@@ -9,7 +9,7 @@ import { themeContext } from "../context/ThemeContext";
 import { chatContext } from "../context/ChatContext";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
-const SideBar = () => {
+const SideBar = ({ setLoading }) => {
   const isMobile = useMediaQuery("(max-width:767px)");
   const [state, setState] = React.useState(false);
   const { theme, toggleTheme } = useContext(themeContext);
@@ -55,6 +55,7 @@ const SideBar = () => {
               setClearChat(true);
               setIsChatOpen(false);
               setInitialInputValue("");
+              setLoading(false);
             }}
           />
         </Box>

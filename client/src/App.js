@@ -2,17 +2,18 @@ import "./App.css";
 // We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems.
 
 import SideBar from "./components/SideBar";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Home from "./components/Home";
 import ChatContainer from "./components/ChatContainer";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { chatContext } from "./context/ChatContext";
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const { isChatOpen } = useContext(chatContext);
   return (
     <div className="App">
-      <SideBar />
+      <SideBar setLoading={setLoading} />
       <Box
         position="relative"
         display="flex"
@@ -24,7 +25,7 @@ function App() {
         sx={{ marginLeft: { xs: 0, md: "268px" } }}
       >
         {!isChatOpen && <Home />}
-        <ChatContainer />
+        <ChatContainer loading={loading} setLoading={setLoading} />
       </Box>
     </div>
   );

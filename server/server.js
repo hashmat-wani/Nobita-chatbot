@@ -46,16 +46,3 @@ app.post("/", async (req, res) => {
 app.listen(5000, () => {
   console.log(`server is running on port http://localhost:5000`);
 });
-
-// callApi();
-// async function callApi() {
-//   const response = await openai.createCompletion({
-//     model: "text-davinci-003",
-//     prompt: "Say this is a test",
-//     temperature: 0,
-//     max_tokens: 7,
-//     // top_p: 1,
-//     // frequency_penalty: 0.5,
-//     // presence_penalty: 0,
-//   });
-// }

@@ -12,12 +12,11 @@ import { chatContext } from "../context/ChatContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CircularProgress from "@mui/material/CircularProgress";
 
-const ChatContainer = () => {
+const ChatContainer = ({loading,setLoading}) => {
   // const [state, setState] = useState(false);
   const formRef = useRef(null);
   const chat_container_ref = useRef(null);
   const loadInterval = useRef(null);
-  const [loading, setLoading] = useState(false);
   const {
     setIsChatOpen,
     clearChat,
