@@ -1,0 +1,104 @@
+#chat_container {
+  /* border: 3px solid blue; */
+  margin-top: 10px;
+  flex: 1;
+  width: 100%;
+  max-height: 77vh;
+  overflow-y: scroll;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  /* padding-bottom: 200px; */
+  scroll-behavior: smooth;
+}
+
+/* hides scrollbar */
+#chat_container::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper {
+  /* border-radius: 10px; */
+  width: 100%;
+  padding: 17px 90px;
+}
+
+.ai {
+  background: #40414f;
+}
+.chat {
+  /* border: 1px solid white; */
+  width: 100%;
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.profile {
+  width: 36px;
+  height: 36px;
+  /* border-radius: 5px; */
+  background: #5436da;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ai .profile {
+  background: #10a37f;
+}
+
+.profile img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.message {
+  margin-top: 6px;
+  /* border: 2px solid red; */
+  flex: 1;
+
+  color: #dcdcdc;
+
+  max-width: 100%;
+  overflow-x: scroll;
+
+  /*
+   * white space refers to any spaces, tabs, or newline characters that are used to format the CSS code
+   * specifies how white space within an element should be handled. It is similar to the "pre" value, which tells the browser to treat all white space as significant and to preserve it exactly as it appears in the source code.
+   * The pre-wrap value allows the browser to wrap long lines of text onto multiple lines if necessary.
+   * The default value for the white-space property in CSS is "normal". This tells the browser to collapse multiple white space characters into a single space, and to wrap text onto multiple lines as needed to fit within its container.
+  */
+  white-space: pre-wrap;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* hides scrollbar */
+.message::-webkit-scrollbar {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .test {
+    border-top: 1px solid;
+  }
+  #chat_container {
+    margin-top: 50px;
+  }
+  .wrapper {
+    /* border-radius: 10px; */
+    width: 100%;
+    padding: 17px;
+  }
+}
