@@ -82,6 +82,7 @@ const SideBar = ({ setLoading }) => {
                 setClearChat(true);
                 setIsChatOpen(false);
                 setInitialInputValue("");
+                setLoading(false);
               }}
               sx={{
                 border: 1,
