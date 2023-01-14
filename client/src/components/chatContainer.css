@@ -25,19 +25,17 @@
 .wrapper {
   position: relative;
   width: 100%;
-  padding: 17px 90px;
+  padding: 20px 90px;
   font-size: 16px;
 }
 
 .chat {
   /* border: 1px solid white; */
   width: 100%;
-  /* max-width: 1280px; */
-  margin: 0 auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 10px;
+  gap: 25px;
 }
 
 .profile {
@@ -83,6 +81,9 @@
 .message::-webkit-scrollbar {
   display: none;
 }
+.copy-play {
+  align-self: flex-end;
+}
 
 @media only screen and (max-width: 768px) {
   .footer {
@@ -92,8 +93,11 @@
     margin-top: 50px;
   }
   .wrapper {
-    /* border-radius: 10px; */
-    width: 100%;
-    padding: 17px;
+    padding: 20px 20px 40px;
+  }
+  .copy-play {
+    position: absolute;
+    bottom: 15px;
+    right: 20px;
   }
 }

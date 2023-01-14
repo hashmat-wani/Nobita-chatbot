@@ -5,7 +5,7 @@ import SideBar from "./components/SideBar";
 import { Box } from "@mui/material";
 import Home from "./components/Home";
 import ChatContainer from "./components/ChatContainer";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { chatContext } from "./context/ChatContext";
 
 function App() {

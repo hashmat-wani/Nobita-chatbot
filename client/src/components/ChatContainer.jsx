@@ -19,8 +19,12 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import CircularProgress from "@mui/material/CircularProgress";
 import CachedIcon from "@mui/icons-material/Cached";
 import StopOutlinedIcon from "@mui/icons-material/StopOutlined";
+import KeyboardVoiceOutlinedIcon from "@mui/icons-material/KeyboardVoiceOutlined";
 import typeText from "../utils/typeText";
 import { themeContext } from "../context/ThemeContext";
+import useSpeech from "../hooks/useSpeech";
+import SpeechLoading from "./speechLoading/SpeechLoading";
+import speak from "../hooks/speak";
 
 const ChatContainer = () => {
   const formRef = useRef(null);
@@ -28,6 +32,8 @@ const ChatContainer = () => {
   const [lastInputValue, setLastInputValue] = useState("");
   const [lastUniqueId, setLastUniqueId] = useState("");
   const [error, setError] = useState(false);
+  const startSpeak = useSpeech(handleSubmit);
+
   const {
     setIsChatOpen,
     clearChat,
@@ -42,6 +48,7 @@ const ChatContainer = () => {
     typing,
     setTyping,
     typingInterval,
+    speechLoading,
   } = useContext(chatContext);
 
   const { theme } = useContext(themeContext);
@@ -49,20 +56,30 @@ const ChatContainer = () => {
   if (clearChat) {
     chat_container_ref.current.innerHTML = "";
   }
-  const controller = new AbortController();
 
-  const handleSubmit = async (e, lastInput = false) => {
-    e.preventDefault();
+  async function handleSubmit(e, lastInput = false, speechRes = false) {
+    e && e.preventDefault();
+    const data = new FormData(formRef.current);
+    let payload = lastInput
+      ? lastInput
+      : speechRes
+      ? speechRes
+      : data.get("prompt");
+    payload = payload.trim();
+    if (!payload) return;
     setLoading(true);
     setIsChatOpen(true);
     setClearChat(false);
-    !initialInputValue && setInitialInputValue(inputValue);
-    setLastInputValue(lastInput ? lastInput : inputValue);
+    !initialInputValue &&
+      setInitialInputValue(inputValue ? inputValue : speechRes);
+    // setLastInputValue(
+    //   lastInput ? lastInput : speechRes ? speechRes : inputValue
+    // );
+    setLastInputValue(payload);
     setInputValue("");
 
     // user chatStripe
-    const data = new FormData(formRef.current);
-    const payload = lastInput ? lastInput : data.get("prompt");
+
     if (!lastInput) {
       chat_container_ref.current.innerHTML += chatStripe(false, payload);
     }
@@ -90,7 +107,6 @@ const ChatContainer = () => {
     loader(loadingDiv, loadingInterval);
 
     fetch("http://localhost:5000", {
-      signal: controller.signal,
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +130,10 @@ const ChatContainer = () => {
               navigator.clipboard.writeText(responses[idx].innerText.slice(5));
             });
           });
-          console.log(document.querySelector(".copy"));
+
+          document.querySelectorAll(".play").forEach((el, idx) => {
+            el.addEventListener("click", () => speak(responses[idx].innerText));
+          });
           typeText(
             loadingDiv,
             chat_container_ref.current,
@@ -126,8 +145,7 @@ const ChatContainer = () => {
         } else {
           setError(true);
           setLoading(false);
-          const err = await response.text();
-          console.log(err);
+          // const err = await response.text();
           loadingDiv.innerHTML =
             "An error occurred. Either the engine you requested does not exist or there was another issue processing your request. Also, Please check your internet connection";
           loadingDiv.style.color = "#EF4444";
@@ -141,7 +159,7 @@ const ChatContainer = () => {
         loadingDiv.style.color = "#EF4444";
         clearInterval(loadingInterval.current);
       });
-  };
+  }
 
   return (
     <div>
@@ -212,6 +230,7 @@ const ChatContainer = () => {
                 p="0 10px 0 20px"
               >
                 <TextField
+                  // border={1}
                   onChange={(e) => setInputValue(e.target.value)}
                   name="prompt"
                   fullWidth
@@ -220,13 +239,36 @@ const ChatContainer = () => {
                   placeholder="Ask Nobita..."
                   multiline
                   maxRows={4}
-                  sx={{ p: "10px 0", overflow: "hidden" }}
+                  sx={{
+                    p: "10px 0",
+                    overflow: "hidden",
+                    // border: "1px solid red",
+                  }}
                   InputProps={{
                     disableUnderline: true,
                   }}
                 />
                 <Button
-                  disabled={inputValue.length === 0 || loading}
+                  disabled={loading}
+                  sx={{
+                    color: "text.primary",
+                    borderRadius: "5px",
+                    "&:hover": {
+                      backgroundColor: "background.primary",
+                    },
+                  }}
+                >
+                  {speechLoading ? (
+                    <SpeechLoading />
+                  ) : (
+                    <KeyboardVoiceOutlinedIcon
+                      cursor="pointer"
+                      onClick={startSpeak}
+                    />
+                  )}
+                </Button>
+                <Button
+                  disabled={inputValue.trim().length === 0 || loading}
                   sx={{
                     color: "text.primary",
                     borderRadius: "5px",
@@ -274,17 +316,23 @@ export default ChatContainer;
 const Container = styled("div")(({ theme, typing, load, error }) => ({
   color: theme.palette.text.primary,
   ".ai": { backgroundColor: theme.palette.background.accent },
-  ".copy": {
-    display: `${typing || load || error ? "none" : "block"}`,
-    backgroundColor: theme.palette.background.primary,
-    padding: "5px 10px",
-    position: "absolute",
-    right: "15px",
-    top: "10px",
-    borderRadius: "5px",
-    fontSize: "13px",
-    cursor: "pointer",
-    ":hover": { backgroundColor: theme.palette.background.dark },
+  ".copy-play": {
+    display: `${typing || load || error ? "none" : "flex"}`,
+    alignItems: "center",
+    columnGap: "16px",
+
+    // backgroundColor: theme.palette.background.primary,
+    // color: theme.palette.text.primary,
+    // padding: "5px 10px",
+    // border: "1px solid red",
+    // position: "absolute",
+    // right: "25px",
+    // top: "10px",
+    // borderRadius: "5px",
+    // fontSize: "11px",
+    // cursor: "pointer",
+    // ":hover": { backgroundColor: theme.palette.background.dark },
+    "& img": { width: "15px", cursor: "pointer" },
   },
 }));
 

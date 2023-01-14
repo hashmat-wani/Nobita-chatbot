@@ -24,6 +24,16 @@ const SideBar = () => {
     loadingInterval,
   } = useContext(chatContext);
 
+  const newChat = () => {
+    setClearChat(true);
+    setIsChatOpen(false);
+    setInitialInputValue("");
+    setLoading(false);
+    setTyping(false);
+    clearInterval(typingInterval.current);
+    clearInterval(loadingInterval.current);
+  };
+
   return (
     <Box>
       {isMobile && (
@@ -54,18 +64,7 @@ const SideBar = () => {
               ? initialInputValue.slice(0, 20) + "..."
               : initialInputValue}
           </Box>
-          <AddIcon
-            cursor="pointer"
-            onClick={() => {
-              setClearChat(true);
-              setIsChatOpen(false);
-              setInitialInputValue("");
-              setLoading(false);
-              setTyping(false);
-              clearInterval(typingInterval.current);
-              clearInterval(loadingInterval.current);
-            }}
-          />
+          <AddIcon cursor="pointer" onClick={newChat} />
         </Box>
       )}
 
@@ -87,14 +86,7 @@ const SideBar = () => {
         >
           <Box display="flex" flexDirection="column" rowGap={2}>
             <List
-              onClick={() => {
-                setClearChat(true);
-                setIsChatOpen(false);
-                setInitialInputValue("");
-                setLoading(false);
-                // clearInterval(typingInterval.current);
-                // setTyping(false);
-              }}
+              onClick={newChat}
               sx={{
                 border: 1,
                 borderColor: "background.accent",

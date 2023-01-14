@@ -1,9 +1,10 @@
 import botIcon from "../assets/bot.svg";
 import userIcon from "../assets/user.svg";
+import copyIcon from "../assets/copy.svg";
+import playIcon from "../assets/play.svg";
 
 function chatStripe(isAi, value, uniqueId) {
   return `<Box class="wrapper ${isAi && "ai"}">
-  ${isAi ? "<div class=copy>Copy</div>" : ""}
       <div class="chat">
         <div class="profile">
           <img src="${isAi ? botIcon : userIcon}" alt="${
@@ -11,6 +12,11 @@ function chatStripe(isAi, value, uniqueId) {
   }" />
         </div>
         <div class="message" id="${uniqueId}">${value}</div>
+        ${
+          isAi
+            ? `<div class="copy-play"><img class="play" src="${playIcon}" /> <img class="copy" src="${copyIcon}" /></div>`
+            : ""
+        }
       </div>
     </Box>`;
 }
