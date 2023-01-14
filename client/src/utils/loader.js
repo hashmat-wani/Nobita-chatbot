@@ -1,9 +1,8 @@
-function loader(element, loadInterval) {
+function loader(element, loadingInterval) {
   element.textContent = "";
 
-  loadInterval.current = setInterval(() => {
+  loadingInterval.current = setInterval(() => {
     element.textContent += ".";
-
     if (element.textContent === "....") element.textContent = "";
   }, 300);
 }

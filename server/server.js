@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import { Configuration, OpenAIApi } from "openai";
 dotenv.config();
-console.log(process.env.OPENAI_API_KEY);
 const configuration = new Configuration({
   //   organization: "org-i16GdI3biVetsydNnhzCYRLs",
   apiKey: process.env.OPENAI_API_KEY,
@@ -33,12 +32,10 @@ app.post("/", async (req, res) => {
       // frequency_penalty: 0.5,
       // presence_penalty: 0,
     });
-    console.log(response);
     res.status(200).send({
       bot: response.data.choices[0].text,
     });
   } catch (err) {
-    // console.log(err);
     res.status(500).send({ errororrrr: err });
   }
 });

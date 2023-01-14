@@ -9,11 +9,10 @@ import { useContext, useState } from "react";
 import { chatContext } from "./context/ChatContext";
 
 function App() {
-  const [loading, setLoading] = useState(false);
   const { isChatOpen } = useContext(chatContext);
   return (
     <div className="App">
-      <SideBar setLoading={setLoading} />
+      <SideBar />
       <Box
         position="relative"
         display="flex"
@@ -25,7 +24,7 @@ function App() {
         sx={{ marginLeft: { xs: 0, md: "268px" } }}
       >
         {!isChatOpen && <Home />}
-        <ChatContainer loading={loading} setLoading={setLoading} />
+        <ChatContainer />
       </Box>
     </div>
   );

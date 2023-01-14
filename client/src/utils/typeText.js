@@ -1,12 +1,20 @@
-function typeText(el, chatContainer, text, setLoading) {
+function typeText(
+  el,
+  chatContainer,
+  text,
+  typingInterval,
+  setLoading,
+  setTyping
+) {
   let idx = 0;
-  let interval = setInterval(() => {
+  typingInterval.current = setInterval(() => {
     if (idx < text.length) {
       el.innerHTML += text[idx++];
       chatContainer.scrollTop = chatContainer.scrollHeight;
     } else {
-      clearInterval(interval);
+      clearInterval(typingInterval.current);
       setLoading(false);
+      setTyping(false);
     }
   }, 20);
 }

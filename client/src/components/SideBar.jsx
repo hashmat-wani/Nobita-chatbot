@@ -9,7 +9,7 @@ import { themeContext } from "../context/ThemeContext";
 import { chatContext } from "../context/ChatContext";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
 
-const SideBar = ({ setLoading }) => {
+const SideBar = () => {
   const isMobile = useMediaQuery("(max-width:767px)");
   const [state, setState] = React.useState(false);
   const { theme, toggleTheme } = useContext(themeContext);
@@ -18,10 +18,14 @@ const SideBar = ({ setLoading }) => {
     setClearChat,
     initialInputValue,
     setInitialInputValue,
+    setLoading,
+    setTyping,
+    typingInterval,
+    loadingInterval,
   } = useContext(chatContext);
 
   return (
-    <Box fontSize="14px">
+    <Box>
       {isMobile && (
         <Box
           sx={{
@@ -31,7 +35,7 @@ const SideBar = ({ setLoading }) => {
             columnGap: "16px",
             color: "text.primary",
             backgroundColor: "background.accent",
-            position: "absolute",
+            position: "fixed",
             borderBottom: 1,
             borderColor: "text.primary",
             top: 0,
@@ -41,7 +45,7 @@ const SideBar = ({ setLoading }) => {
             width: "100%",
           }}
         >
-          <MenuIcon onClick={() => setState(!state)} />
+          <MenuIcon cursor="pointer" onClick={() => setState(!state)} />
 
           <Box>
             {!initialInputValue
@@ -51,15 +55,20 @@ const SideBar = ({ setLoading }) => {
               : initialInputValue}
           </Box>
           <AddIcon
+            cursor="pointer"
             onClick={() => {
               setClearChat(true);
               setIsChatOpen(false);
               setInitialInputValue("");
               setLoading(false);
+              setTyping(false);
+              clearInterval(typingInterval.current);
+              clearInterval(loadingInterval.current);
             }}
           />
         </Box>
       )}
+
       <Drawer
         variant={isMobile ? "temporary" : "permanent"}
         anchor="left"
@@ -83,6 +92,8 @@ const SideBar = ({ setLoading }) => {
                 setIsChatOpen(false);
                 setInitialInputValue("");
                 setLoading(false);
+                // clearInterval(typingInterval.current);
+                // setTyping(false);
               }}
               sx={{
                 border: 1,

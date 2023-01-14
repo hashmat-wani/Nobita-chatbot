@@ -5,7 +5,7 @@
 //   desktop: "1200px",
 // };
 
-import { createTheme } from "@mui/material";
+// import { createTheme } from "@mui/material";
 
 // const themeCommon = {
 //   shadow: "0px 10px 10px rgba(0, 0, 0, 0.2)",
@@ -60,6 +60,7 @@ export const getDesignTokens = (mode) => ({
             dark: "#202123",
             primary: "#343541",
             accent: "#3e3f4b",
+            // accent: "#e5c",
           },
           text: {
             primary: "#dcdcdc",

@@ -3,7 +3,7 @@
   margin-top: 10px;
   flex: 1;
   width: 100%;
-  max-height: 77vh;
+  max-height: 100vh;
   overflow-y: scroll;
 
   display: flex;
@@ -13,7 +13,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  /* padding-bottom: 200px; */
+  padding-bottom: 200px;
   scroll-behavior: smooth;
 }
 
@@ -23,14 +23,12 @@
 }
 
 .wrapper {
-  /* border-radius: 10px; */
+  position: relative;
   width: 100%;
   padding: 17px 90px;
+  font-size: 16px;
 }
 
-.ai {
-  background: #40414f;
-}
 .chat {
   /* border: 1px solid white; */
   width: 100%;
@@ -63,12 +61,9 @@
 }
 
 .message {
-  margin-top: 6px;
+  margin-top: 5px;
   /* border: 2px solid red; */
   flex: 1;
-
-  color: #dcdcdc;
-
   max-width: 100%;
   overflow-x: scroll;
 
@@ -90,7 +85,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .test {
+  .footer {
     border-top: 1px solid;
   }
   #chat_container {

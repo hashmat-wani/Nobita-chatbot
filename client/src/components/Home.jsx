@@ -15,9 +15,9 @@ const Home = () => {
       flexDirection="column"
       justify-content="center"
       // border={1}
-      margin="30px 12% 120px"
+      sx={{ margin: { xs: "50px 12% 120px", md: "30px 12% 120px" } }}
     >
-      <h1 style={{ margin: "20px 0 60px" }}>Nobita</h1>
+      <h1 style={{ margin: "20px 0 60px", fontSize: "50px" }}>Nobita</h1>
 
       <Stack
         // border={1}
@@ -109,7 +109,6 @@ const Home = () => {
 export default Home;
 
 const Item = styled(Box)({
-  fontSize: "14px",
   borderRadius: "5px",
   padding: "10px 15px",
   textAlign: "center",

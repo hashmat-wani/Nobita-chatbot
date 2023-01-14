@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Fauna+One&display=swap");
-
 * {
   box-sizing: border-box;
+  font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+    Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
 }
 body {
   margin: 0;
