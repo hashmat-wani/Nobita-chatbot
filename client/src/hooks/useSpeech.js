@@ -42,9 +42,9 @@ const useSpeech = (handleSubmit) => {
     recognition.stop();
   };
   recognition.onend = function () {
-    // setInputValue("");
+    setInputValue("");
     setSpeechLoading(false);
-    recognition.stop();
+    // recognition.stop();
   };
   recognition.onerror = function (e) {
     // setSpeechInputValue("Error occurred in recognition: " + e.error);
