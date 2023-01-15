@@ -6,7 +6,6 @@ const ChatContext = ({ children }) => {
   const [clearChat, setClearChat] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [speechInputValue, setSpeechInputValue] = useState("");
   const [initialInputValue, setInitialInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -31,8 +30,6 @@ const ChatContext = ({ children }) => {
         setTyping,
         loadingInterval,
         typingInterval,
-        speechInputValue,
-        setSpeechInputValue,
         speechLoading,
         setSpeechLoading,
       }}

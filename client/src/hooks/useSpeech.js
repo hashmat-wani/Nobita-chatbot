@@ -13,28 +13,27 @@ const useSpeech = (handleSubmit) => {
     window.msSpeechRecognition;
 
   const recognition = new window.SpeechRecognition();
-  recognition.lang = "en-US";
+  recognition.lang = "en-GB";
   recognition.interimResults = true;
 
   const startSpeak = () => {
     const audio = new Audio(nobitaOpenSound);
     audio.play();
-    // required('../assets/sound.mp3')
     setSpeechLoading(true);
     recognition.start();
   };
 
-  // recognition.addEventListener("result", (e) => {
-  //   const res = Array.from(e.results)
-  //     .map((result) => result[0])
-  //     .map((result) => result.transcript);
-  //   setSpeechInputValue(res);
-  // });
-  recognition.onresult = (e) => {
-    res = e.results[0][0].transcript;
+  recognition.addEventListener("result", (e) => {
+    const res = Array.from(e.results)
+      .map((result) => result[0])
+      .map((result) => result.transcript);
     console.log(res);
-    setInputValue(res);
-  };
+    setInputValue(res.join(""));
+  });
+  // recognition.onresult = (e) => {
+  //   res = e.results[0][0].transcript;
+  //   setInputValue(res);
+  // };
   recognition.onspeechend = function (e) {
     new Audio(nobitaCloseSound).play();
     handleSubmit(undefined, undefined, res);

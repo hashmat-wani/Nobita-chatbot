@@ -27,7 +27,6 @@ import SpeechLoading from "./speechLoading/SpeechLoading";
 import speak from "../hooks/speak";
 
 const ChatContainer = () => {
-  console.log(process.env.REACT_APP_FETCH_API);
   const formRef = useRef(null);
   const chat_container_ref = useRef(null);
   const [lastInputValue, setLastInputValue] = useState("");
@@ -128,7 +127,7 @@ const ChatContainer = () => {
           const responses = document.querySelectorAll(".ai");
           document.querySelectorAll(".copy").forEach((el, idx) => {
             el.addEventListener("click", () => {
-              navigator.clipboard.writeText(responses[idx].innerText.slice(5));
+              navigator.clipboard.writeText(responses[idx].innerText);
             });
           });
 
