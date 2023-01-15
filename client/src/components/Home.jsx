@@ -1,11 +1,10 @@
 import React, { useContext } from "react";
 import { Box, Stack, styled, Typography } from "@mui/material";
-
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import ElectricBoltOutlinedIcon from "@mui/icons-material/ElectricBoltOutlined";
 import { chatContext } from "../context/ChatContext";
-
+// comment
 const Home = () => {
   const { setInputValue } = useContext(chatContext);
   return (
