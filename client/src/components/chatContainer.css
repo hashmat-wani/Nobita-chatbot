@@ -92,8 +92,11 @@
   #chat_container {
     margin-top: 50px;
   }
+  .wrapper {
+    padding: 20px;
+  }
   .wrapper.ai {
-    padding: 20px 20px 40px;
+    padding-bottom: 40px;
   }
   .copy-play {
     position: absolute;
