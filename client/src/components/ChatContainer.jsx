@@ -57,6 +57,18 @@ const ChatContainer = () => {
     chat_container_ref.current.innerHTML = "";
   }
 
+  function checkGreeting(value) {
+    return [
+      "hi",
+      "hello",
+      "hey",
+      "hey nobita",
+      "how are you",
+      "greeting",
+      "how do you do",
+    ].includes(value.toLowerCase());
+  }
+
   async function handleSubmit(e, lastInput = false, speechRes = false) {
     e && e.preventDefault();
     const data = new FormData(formRef.current);
@@ -70,11 +82,11 @@ const ChatContainer = () => {
     setLoading(true);
     setIsChatOpen(true);
     setClearChat(false);
-    !initialInputValue &&
-      setInitialInputValue(inputValue ? inputValue : speechRes);
-    // setLastInputValue(
-    //   lastInput ? lastInput : speechRes ? speechRes : inputValue
-    // );
+
+    if (!initialInputValue || checkGreeting(initialInputValue)) {
+      if (checkGreeting(payload)) setInitialInputValue("Greeting");
+      else setInitialInputValue(payload);
+    }
     setLastInputValue(payload);
     setInputValue("");
 

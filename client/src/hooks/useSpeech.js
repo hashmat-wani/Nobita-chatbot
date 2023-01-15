@@ -24,11 +24,11 @@ const useSpeech = (handleSubmit) => {
   };
 
   recognition.addEventListener("result", (e) => {
-    const res = Array.from(e.results)
+    res = Array.from(e.results)
       .map((result) => result[0])
-      .map((result) => result.transcript);
-    console.log(res);
-    setInputValue(res.join(""));
+      .map((result) => result.transcript)
+      .join("");
+    setInputValue(res);
   });
   // recognition.onresult = (e) => {
   //   res = e.results[0][0].transcript;
