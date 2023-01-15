@@ -6,7 +6,6 @@ const speak = (text) => {
     utterance.voice = voices[2];
     speechSynthesis.speak(utterance);
   }
-  //   return <div>usespeak</div>;
 };
 
 export default speak;

@@ -27,6 +27,7 @@ import SpeechLoading from "./speechLoading/SpeechLoading";
 import speak from "../hooks/speak";
 
 const ChatContainer = () => {
+  console.log(process.env.REACT_APP_FETCH_API);
   const formRef = useRef(null);
   const chat_container_ref = useRef(null);
   const [lastInputValue, setLastInputValue] = useState("");
@@ -106,7 +107,7 @@ const ChatContainer = () => {
       loadingDiv.style.color = theme === "light" ? "#383838" : "#dcdcdc";
     loader(loadingDiv, loadingInterval);
 
-    fetch("http://localhost:5000", {
+    fetch(process.env.REACT_APP_FETCH_API, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
