@@ -192,7 +192,7 @@ const SideBar = ({
           </FormControl> */}
 
           {/* Native */}
-          <FormControl
+          {/* <FormControl
             sx={{
               width: "207px",
               margin: "0 auto",
@@ -204,35 +204,25 @@ const SideBar = ({
               value={10}
               onChange={(e) => setCurrModel(e.target.value)}
             >
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
-              {/* {models.map((model) => (
+              {models.map((model) => (
                 <option key={model.id} value={model.id}>
                   {model.id}
                 </option>
-              ))} */}
+              ))}
             </NativeSelect>
             <FormHelperText sx={{ margin: "5px 0 0" }}>
               The model parameter controls the engine used to generate the
               response. <em>text-davinci-003</em> produces best results.
             </FormHelperText>
-          </FormControl>
+          </FormControl> */}
+
+          <select name="" id="">
+            {models.map((model) => (
+              <option key={model.id} value={model.id}>
+                {model.id}
+              </option>
+            ))}
+          </select>
 
           {/* TEMPERATURE */}
           <Box sx={{ padding: "0 15px" }}>
