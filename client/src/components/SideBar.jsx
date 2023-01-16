@@ -7,7 +7,9 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import Drawer from "@mui/material/Drawer";
 import {
   Box,
+  Divider,
   FormHelperText,
+  NativeSelect,
   styled,
   Typography,
   useMediaQuery,
@@ -152,16 +154,15 @@ const SideBar = ({
                 : initialInputValue}
             </List>
           )}
+          <Divider />
 
           {/* Models */}
-          <FormControl
+          {/* <FormControl
             sx={{
               width: "237px",
             }}
           >
-            <InputLabel id="demo-simple-select-autowidth-label">
-              Model
-            </InputLabel>
+            <InputLabel>Model</InputLabel>
             <Select
               sx={{
                 "& .MuiOutlinedInput-notchedOutline": {
@@ -176,7 +177,6 @@ const SideBar = ({
               }}
               value={currModel}
               onChange={(e) => setCurrModel(e.target.value)}
-              autoWidth
               label="Model"
             >
               {models.map((model) => (
@@ -186,6 +186,30 @@ const SideBar = ({
               ))}
             </Select>
             <FormHelperText>
+              The model parameter controls the engine used to generate the
+              response. <em>text-davinci-003</em> produces best results.
+            </FormHelperText>
+          </FormControl> */}
+
+          {/* Native */}
+          <FormControl
+            sx={{
+              width: "207px",
+              margin: "0 auto",
+            }}
+          >
+            <InputLabel variant="standard">Model</InputLabel>
+            <NativeSelect
+              value={currModel}
+              onChange={(e) => setCurrModel(e.target.value)}
+            >
+              {models.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {model.id}
+                </option>
+              ))}
+            </NativeSelect>
+            <FormHelperText sx={{ margin: "5px 0 0" }}>
               The model parameter controls the engine used to generate the
               response. <em>text-davinci-003</em> produces best results.
             </FormHelperText>
@@ -206,7 +230,7 @@ const SideBar = ({
               min={0}
               max={1}
             />
-            <FormHelperText>
+            <FormHelperText sx={{ margin: 0 }}>
               Higher values means the model will take more risks. Try{" "}
               <em>0.9</em> for more creative answers, and <em>0</em> for ones
               with a well-defined answer.{" "}
@@ -228,7 +252,7 @@ const SideBar = ({
               min={1}
               max={3000}
             />
-            <FormHelperText>
+            <FormHelperText sx={{ margin: 0 }}>
               The maximum number of tokens to generate. The exact limit varies
               by model.{" "}
               <em>1 token is roughly 4 characters for normal English text</em>
@@ -241,7 +265,7 @@ const SideBar = ({
           padding="10px"
           borderTop={1}
           borderColor="background.primary"
-          // backgroundColor="background.dark"
+          backgroundColor="background.dark"
           position="fixed"
           bottom={0}
         >
@@ -289,7 +313,7 @@ const ScrollBarBox = styled("div")(({ theme }) => ({
   // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
-  rowGap: "30px",
+  rowGap: "20px",
   padding: "10px",
   overflowY: "scroll",
   "&::-webkit-scrollbar-track": {

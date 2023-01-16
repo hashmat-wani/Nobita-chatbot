@@ -149,7 +149,8 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
           });
 
           if (parsedData === "") {
-            loadingDiv.innerHTML = "No results Found 😞";
+            loadingDiv.innerHTML =
+              "No results Found 😞\n<small>Change model</small>";
             setLoading(false);
           } else {
             setTyping(true);
