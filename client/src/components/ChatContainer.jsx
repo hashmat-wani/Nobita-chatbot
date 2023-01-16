@@ -119,9 +119,8 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
       loadingDiv.style.color = theme === "light" ? "#383838" : "#dcdcdc";
     loader(loadingDiv, loadingInterval);
 
-    // fetch(process.env.REACT_APP_PRO_API, {
-    // fetch(process.env.REACT_APP_DEV_API, {
-    fetch("http://localhost:5000", {
+    fetch(process.env.REACT_APP_PRO_API, {
+      // fetch(process.env.REACT_APP_DEV_API, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
