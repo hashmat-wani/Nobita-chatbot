@@ -200,18 +200,18 @@ const SideBar = ({
           >
             <InputLabel variant="standard">Model</InputLabel>
             <NativeSelect
-              inputProps={{
-                name: "model",
-                id: "uncontrolled-native",
-              }}
-              value={currModel}
+              // value={currModel}
+              value={10}
               onChange={(e) => setCurrModel(e.target.value)}
             >
-              {models.map((model) => (
+              <option value={10}>Ten</option>
+              <option value={20}>Twenty</option>
+              <option value={30}>Thirty</option>
+              {/* {models.map((model) => (
                 <option key={model.id} value={model.id}>
                   {model.id}
                 </option>
-              ))}
+              ))} */}
             </NativeSelect>
             <FormHelperText sx={{ margin: "5px 0 0" }}>
               The model parameter controls the engine used to generate the
