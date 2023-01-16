@@ -229,7 +229,7 @@ const SideBar = ({
 
         <Box
           width="268px"
-          padding={1}
+          padding="10px"
           borderTop={1}
           borderColor="background.accent"
           position="fixed"
@@ -287,7 +287,8 @@ const ScrollBarBox = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.background.dark,
   },
   "&::-webkit-scrollbar": {
-    width: "8px",
+    // width: "8px",
+    width: { xs: 0, md: "8px" },
   },
   "&::-webkit-scrollbar-thumb": {
     backgroundColor: theme.palette.background.accent,
