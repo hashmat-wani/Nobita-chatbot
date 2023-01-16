@@ -5,7 +5,8 @@ import nobitaCloseSound from "../assets/nobitaClose.mp3";
 
 const useSpeech = (handleSubmit) => {
   let res;
-  const { setInputValue, setSpeechLoading } = useContext(chatContext);
+  const { setInputValue, setSpeechLoading, setSpeechError } =
+    useContext(chatContext);
   window.SpeechRecognition =
     window.SpeechRecognition ||
     window.webkitSpeechRecognition ||
@@ -38,16 +39,20 @@ const useSpeech = (handleSubmit) => {
     new Audio(nobitaCloseSound).play();
     handleSubmit(undefined, undefined, res);
     setSpeechLoading(false);
-
-    // recognition.stop();
+    console.log("onspeechend");
+    recognition.start();
   };
   recognition.onend = function () {
     setInputValue("");
     setSpeechLoading(false);
-    // recognition.stop();
+    console.log("onend");
+    recognition.start();
   };
   recognition.onerror = function (e) {
-    // setSpeechInputValue("Error occurred in recognition: " + e.error);
+    console.log(e);
+    setSpeechError(
+      "Something went wrong. Please Check your internet connection or try to type."
+    );
   };
   return startSpeak;
 };
