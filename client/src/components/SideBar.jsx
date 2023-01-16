@@ -200,6 +200,10 @@ const SideBar = ({
           >
             <InputLabel variant="standard">Model</InputLabel>
             <NativeSelect
+              inputProps={{
+                name: "model",
+                id: "uncontrolled-native",
+              }}
               value={currModel}
               onChange={(e) => setCurrModel(e.target.value)}
             >
@@ -276,7 +280,7 @@ const SideBar = ({
               setCurrModel("text-davinci-003");
             }}
           >
-            <RotateLeftSharpIcon fontSize="small" /> Reset Settings to default
+            <RotateLeftSharpIcon fontSize="small" /> Reset settings to default
           </List>
 
           <List onClick={() => toggleTheme()}>
