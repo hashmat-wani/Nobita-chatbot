@@ -23,9 +23,10 @@ function App() {
     // fetch(`${process.env.REACT_APP_DEV_API}/models`)
     fetch(`${process.env.REACT_APP_PRO_API}/models`)
       .then((res) => res.json())
-      .then((data) => setModels(data.models))
+      .then((data) => setModels(data.models.map((el) => el.id)))
       .catch((err) => console.log(err));
   }, []);
+  console.log(models);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
