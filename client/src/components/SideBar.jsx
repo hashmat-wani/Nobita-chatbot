@@ -110,7 +110,14 @@ const SideBar = ({
         open={state}
         onClose={() => setState(!state)}
       >
-        <ScrollBarBox>
+        <ScrollBarBox
+          sx={{
+            height: { xs: "calc(100vh - 109px)", md: "calc(100vh - 103px)" },
+            "&::-webkit-scrollbar": {
+              display: { xs: "none", md: "block" },
+            },
+          }}
+        >
           {/* New Chat */}
           <List
             onClick={newChat}
@@ -279,7 +286,6 @@ const ScrollBarBox = styled("div")(({ theme }) => ({
   // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
-  height: "calc(100vh - 99px)",
   rowGap: "30px",
   padding: "10px",
   overflowY: "scroll",
@@ -287,8 +293,8 @@ const ScrollBarBox = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.background.dark,
   },
   "&::-webkit-scrollbar": {
-    // width: "8px",
-    width: { xs: 0, md: "8px" },
+    width: "8px",
+    // width: { xs: 0, md: "8px" },
   },
   "&::-webkit-scrollbar-thumb": {
     backgroundColor: theme.palette.background.accent,
