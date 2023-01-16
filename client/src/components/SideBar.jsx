@@ -101,6 +101,8 @@ const SideBar = ({
         PaperProps={{
           sx: {
             backgroundColor: "background.dark",
+            backgroundImage:
+              "linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))",
             color: "text.primary",
             width: "268px",
           },
@@ -239,14 +241,9 @@ const SideBar = ({
           padding="10px"
           borderTop={1}
           borderColor="background.primary"
+          // backgroundColor="background.dark"
           position="fixed"
           bottom={0}
-          sx={{
-            backgroundColor: {
-              xs: `${theme === "dark" ? "#414243" : "#f9f9f9"}`,
-              md: "background.dark",
-            },
-          }}
         >
           <List
             onClick={() => {
