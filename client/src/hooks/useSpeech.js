@@ -39,7 +39,7 @@ const useSpeech = (handleSubmit) => {
     handleSubmit(undefined, undefined, res);
     setSpeechLoading(false);
 
-    recognition.stop();
+    // recognition.stop();
   };
   recognition.onend = function () {
     setInputValue("");
