@@ -205,8 +205,8 @@ const SideBar = ({
                 onChange={(e) => setCurrModel(e.target.value)}
               >
                 {models.map((model) => (
-                  <option key={model} value={model}>
-                    {model}
+                  <option key={model.id} value={model.id}>
+                    {model.id}
                   </option>
                 ))}
               </NativeSelect>
