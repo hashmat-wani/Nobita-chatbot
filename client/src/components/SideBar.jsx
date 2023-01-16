@@ -238,9 +238,15 @@ const SideBar = ({
           width="268px"
           padding="10px"
           borderTop={1}
-          borderColor="background.accent"
+          borderColor="background.primary"
           position="fixed"
           bottom={0}
+          sx={{
+            backgroundColor: {
+              xs: `${theme === "dark" ? "#414243" : "#f9f9f9"}`,
+              md: "background.dark",
+            },
+          }}
         >
           <List
             onClick={() => {
