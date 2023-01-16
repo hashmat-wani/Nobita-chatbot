@@ -26,7 +26,10 @@ function App() {
       .get(`${process.env.REACT_APP_PRO_API}/models`)
       // fetch(`${process.env.REACT_APP_PRO_API}/models`)
       // .then((res) => res.json())
-      .then((data) => setModels(data.models.data))
+      .then((data) => {
+        console.log(data.data.models.data);
+        setModels(data.data.models.data);
+      })
       .catch((err) => console.log(err));
   }, []);
   console.log(models);
