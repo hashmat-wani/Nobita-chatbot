@@ -39,17 +39,17 @@ const useSpeech = (handleSubmit) => {
     new Audio(nobitaCloseSound).play();
     handleSubmit(undefined, undefined, res);
     setSpeechLoading(false);
-    console.log("onspeechend");
-    recognition.start();
+    // console.log("onspeechend");
+    recognition.stop();
   };
   recognition.onend = function () {
     setInputValue("");
     setSpeechLoading(false);
-    console.log("onend");
-    recognition.start();
+    // console.log("onend");
+    recognition.stop();
   };
   recognition.onerror = function (e) {
-    console.log(e);
+    // console.log(e);
     setSpeechError(
       "Something went wrong. Please Check your internet connection or try to type."
     );

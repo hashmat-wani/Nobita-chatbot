@@ -26,7 +26,7 @@ import useSpeech from "../hooks/useSpeech";
 import SpeechLoading from "./speechLoading/SpeechLoading";
 import speak from "../hooks/speak";
 
-const ChatContainer = () => {
+const ChatContainer = ({ currModel, temp, maxLength }) => {
   const formRef = useRef(null);
   const chat_container_ref = useRef(null);
   const [lastInputValue, setLastInputValue] = useState("");
@@ -72,28 +72,29 @@ const ChatContainer = () => {
   async function handleSubmit(e, lastInput = false, speechRes = false) {
     e && e.preventDefault();
     const data = new FormData(formRef.current);
-    let payload = lastInput
+    let query = lastInput
       ? lastInput
       : speechRes
       ? speechRes
       : data.get("prompt");
-    payload = payload.trim();
-    if (!payload) return;
+    query = query.trim();
+    let payload = { query, model: currModel, temp, maxLength };
+    if (!query) return;
     setLoading(true);
     setIsChatOpen(true);
     setClearChat(false);
 
     if (!initialInputValue || checkGreeting(initialInputValue)) {
-      if (checkGreeting(payload)) setInitialInputValue("Greeting");
-      else setInitialInputValue(payload);
+      if (checkGreeting(query)) setInitialInputValue("Greeting");
+      else setInitialInputValue(query);
     }
-    setLastInputValue(payload);
+    setLastInputValue(query);
     setInputValue("");
 
     // user chatStripe
 
     if (!lastInput) {
-      chat_container_ref.current.innerHTML += chatStripe(false, payload);
+      chat_container_ref.current.innerHTML += chatStripe(false, query);
     }
 
     formRef.current.reset();
@@ -118,7 +119,9 @@ const ChatContainer = () => {
       loadingDiv.style.color = theme === "light" ? "#383838" : "#dcdcdc";
     loader(loadingDiv, loadingInterval);
 
-    fetch(process.env.REACT_APP_FETCH_API, {
+    // fetch(process.env.REACT_APP_PRO_API, {
+    // fetch(process.env.REACT_APP_DEV_API, {
+    fetch("http://localhost:5000", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -135,7 +138,6 @@ const ChatContainer = () => {
           setError(false);
           const data = await response.json();
           const parsedData = data.bot.trim();
-          setTyping(true);
           const responses = document.querySelectorAll(".ai");
           document.querySelectorAll(".copy").forEach((el, idx) => {
             el.addEventListener("click", () => {
@@ -146,20 +148,27 @@ const ChatContainer = () => {
           document.querySelectorAll(".play").forEach((el, idx) => {
             el.addEventListener("click", () => speak(responses[idx].innerText));
           });
-          typeText(
-            loadingDiv,
-            chat_container_ref.current,
-            parsedData,
-            typingInterval,
-            setLoading,
-            setTyping
-          );
+
+          if (parsedData === "") {
+            loadingDiv.innerHTML = "No results Found 😞";
+            setLoading(false);
+          } else {
+            setTyping(true);
+            typeText(
+              loadingDiv,
+              chat_container_ref.current,
+              parsedData,
+              typingInterval,
+              setLoading,
+              setTyping
+            );
+          }
         } else {
           setError(true);
           setLoading(false);
           // const err = await response.text();
           loadingDiv.innerHTML =
-            "An error occurred. Either the engine you requested does not exist or there was another issue processing your request. Also, Please check your internet connection";
+            "An error occurred. Either the engine you requested does not exist or there was another issue processing your request.\n<small>Hint: Try to change <b>Engine/Model</b> or check your internet connection and then <b>Regenerate response</b><small>";
           loadingDiv.style.color = "#EF4444";
         }
       })
@@ -182,6 +191,8 @@ const ChatContainer = () => {
         ref={chat_container_ref}
         id="chat_container"
       ></Container>
+
+      {/* Footer */}
       <Box
         display="flex"
         flexDirection="column"
@@ -326,24 +337,12 @@ const ChatContainer = () => {
 export default ChatContainer;
 
 const Container = styled("div")(({ theme, typing, load, error }) => ({
-  color: theme.palette.text.primary,
+  // color: theme.palette.text.primary,
   ".ai": { backgroundColor: theme.palette.background.accent },
   ".copy-play": {
     display: `${typing || load || error ? "none" : "flex"}`,
     alignItems: "center",
     columnGap: "16px",
-
-    // backgroundColor: theme.palette.background.primary,
-    // color: theme.palette.text.primary,
-    // padding: "5px 10px",
-    // border: "1px solid red",
-    // position: "absolute",
-    // right: "25px",
-    // top: "10px",
-    // borderRadius: "5px",
-    // fontSize: "11px",
-    // cursor: "pointer",
-    // ":hover": { backgroundColor: theme.palette.background.dark },
     "& img": { width: "15px", cursor: "pointer" },
   },
 }));

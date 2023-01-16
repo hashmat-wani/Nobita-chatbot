@@ -4,7 +4,7 @@ import cors from "cors";
 import { Configuration, OpenAIApi } from "openai";
 dotenv.config();
 const configuration = new Configuration({
-  //   organization: "org-i16GdI3biVetsydNnhzCYRLs",
+  organization: "org-5aXtvxOAwSF6IJuQZ9muAG35",
   apiKey: process.env.OPENAI_API_KEY,
 });
 
@@ -16,27 +16,34 @@ app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.status(200).send({
-    message: "abc",
+    message: "Welcome to Nobita",
   });
+});
+
+app.get("/models", async (req, res) => {
+  try {
+    const response = await openai.listEngines();
+    res.status(200).send({ models: response.data.data });
+  } catch (err) {
+    console.log({ ModelError: err });
+  }
 });
 
 app.post("/", async (req, res) => {
   try {
-    const prompt = req.body.prompt;
+    const { query, model, temp, maxLength } = req.body.prompt;
     const response = await openai.createCompletion({
-      model: "text-davinci-003",
-      prompt: `${prompt}`,
-      temperature: 0,
-      max_tokens: 3000,
-      // top_p: 1,
-      // frequency_penalty: 0.5,
-      // presence_penalty: 0,
+      model: `${model}`,
+      prompt: `${query}`,
+      temperature: temp,
+      max_tokens: maxLength,
+      frequency_penalty: 0.5,
     });
     res.status(200).send({
       bot: response.data.choices[0].text,
     });
   } catch (err) {
-    res.status(500).send({ errororrrr: err });
+    res.status(500).send({ error: err });
   }
 });
 

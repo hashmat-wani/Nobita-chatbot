@@ -5,9 +5,9 @@ export const getDesignTokens = (mode) => ({
       ? {
           // palette values for light mode
           background: {
-            primary: "#F8F8F8",
-            accent: "#e6e6e6",
-            dark: "#cfcfcf",
+            dark: "#f9f9f9",
+            primary: "#e9e9e9",
+            accent: "#d9d9d9",
           },
           text: {
             primary: "#383838",

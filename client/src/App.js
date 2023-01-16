@@ -1,55 +1,47 @@
 import "./App.css";
-// We're experiencing exceptionally high demand. Please hang tight as we work on scaling our systems.
 
 import SideBar from "./components/SideBar";
-import { Alert, Box } from "@mui/material";
+import { Box } from "@mui/material";
 import Home from "./components/Home";
 import ChatContainer from "./components/ChatContainer";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { chatContext } from "./context/ChatContext";
 
-import * as React from "react";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import SnackbarContent from "@mui/material/SnackbarContent";
+import { useEffect } from "react";
 
 function App() {
+  const [models, setModels] = useState([]);
+  const [currModel, setCurrModel] = useState("text-davinci-003");
+  const [temp, setTemp] = useState(0);
+  const [maxLength, setMaxLength] = useState(1500);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/models")
+      .then((res) => res.json())
+      .then((data) => setModels(data.models))
+      .catch((err) => console.log(err));
+  }, []);
+
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
-
     setSpeechError(false);
   };
   const action = (
     <IconButton
+      sx={{ color: "#fff" }}
       size="small"
       aria-label="close"
-      // color="inherit"
       onClick={handleClose}
     >
       <CloseIcon fontSize="small" />
     </IconButton>
   );
-  // <React.Fragment>
-  {
-    /* <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button> */
-  }
-  // <IconButton
-  //   size="small"
-  //   aria-label="close"
-  //   color="inherit"
-  //   onClick={handleClose}
-  // >
-  //   <CloseIcon fontSize="small" />
-  // </IconButton>
-  // </React.Fragment>
-  // );
   const { isChatOpen, speechError, setSpeechError } = useContext(chatContext);
   return (
     <div className="App">
@@ -57,12 +49,11 @@ function App() {
         ContentProps={{
           sx: {
             background: "#d32f2f",
-            color: "#fff",
+            color: "#fff !important",
           },
         }}
         anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         open={speechError ? true : false}
-        // open={true}
         autoHideDuration={5000}
         onClose={handleClose}
         message={
@@ -74,7 +65,15 @@ function App() {
         }
         action={action}
       />
-      <SideBar />
+      <SideBar
+        models={models}
+        currModel={currModel}
+        setCurrModel={setCurrModel}
+        temp={temp}
+        setTemp={setTemp}
+        maxLength={maxLength}
+        setMaxLength={setMaxLength}
+      />
       <Box
         position="relative"
         display="flex"
@@ -82,11 +81,16 @@ function App() {
         minHeight="100vh"
         width="100%"
         // border={2}
+        color="text.primary"
         backgroundColor="background.primary"
         sx={{ marginLeft: { xs: 0, md: "268px" } }}
       >
         {!isChatOpen && <Home />}
-        <ChatContainer />
+        <ChatContainer
+          currModel={currModel}
+          temp={temp}
+          maxLength={maxLength}
+        />
       </Box>
     </div>
   );
