@@ -23,7 +23,7 @@ app.get("/", async (req, res) => {
 app.get("/models", async (req, res) => {
   try {
     const response = await openai.listEngines();
-    res.status(200).send({ models: response.data.data });
+    res.status(200).json({ models: response.data.data });
   } catch (err) {
     console.log({ ModelError: err });
   }
