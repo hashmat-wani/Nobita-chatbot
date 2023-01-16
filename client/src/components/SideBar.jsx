@@ -192,30 +192,29 @@ const SideBar = ({
           </FormControl> */}
 
           {/* Native */}
-          {models.length ? (
-            <FormControl
-              sx={{
-                width: "207px",
-                margin: "0 auto",
-              }}
+
+          <FormControl
+            sx={{
+              width: "207px",
+              margin: "0 auto",
+            }}
+          >
+            <InputLabel variant="standard">Model</InputLabel>
+            <NativeSelect
+              value={currModel}
+              onChange={(e) => setCurrModel(e.target.value)}
             >
-              <InputLabel variant="standard">Model</InputLabel>
-              <NativeSelect
-                value={currModel}
-                onChange={(e) => setCurrModel(e.target.value)}
-              >
-                {models.map((model) => (
-                  <option key={model.id} value={model.id}>
-                    {model.id}
-                  </option>
-                ))}
-              </NativeSelect>
-              <FormHelperText sx={{ margin: "5px 0 0" }}>
-                The model parameter controls the engine used to generate the
-                response. <em>text-davinci-003</em> produces best results.
-              </FormHelperText>
-            </FormControl>
-          ) : null}
+              {models.map((model) => (
+                <option key={model.id} value={model.id}>
+                  {model.id}
+                </option>
+              ))}
+            </NativeSelect>
+            <FormHelperText sx={{ margin: "5px 0 0" }}>
+              The model parameter controls the engine used to generate the
+              response. <em>text-davinci-003</em> produces best results.
+            </FormHelperText>
+          </FormControl>
 
           {/* TEMPERATURE */}
           <Box sx={{ padding: "0 15px" }}>
