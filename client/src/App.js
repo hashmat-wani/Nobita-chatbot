@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [models, setModels] = useState([]);
@@ -21,8 +22,10 @@ function App() {
 
   useEffect(() => {
     // fetch(`${process.env.REACT_APP_DEV_API}/models`)
-    fetch(`${process.env.REACT_APP_PRO_API}/models`)
-      .then((res) => res.json())
+    axios
+      .get(`${process.env.REACT_APP_PRO_API}/models`)
+      // fetch(`${process.env.REACT_APP_PRO_API}/models`)
+      // .then((res) => res.json())
       .then((data) => setModels(data.models.data))
       .catch((err) => console.log(err));
   }, []);
