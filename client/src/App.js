@@ -1,6 +1,6 @@
 import SideBar from "./components/SideBar";
 import { Box, styled } from "@mui/material";
-import Home from "./components/Home";
+import Home from "./components/home/Home";
 import { useContext, useState } from "react";
 import { chatContext } from "./context/ChatContext";
 
