@@ -163,14 +163,12 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
 
     loader(loadingDiv, loadingInterval);
 
-    if (
-      ["hi", "hello", "hey", "hey nobita"].includes(query.toLocaleLowerCase())
-    ) {
+    if (["hi", "hello", "hey", "hey nobita"].includes(query.toLowerCase())) {
       manualReply("greeting", loadingDiv);
       return;
     }
 
-    if (query.toLocaleLowerCase() === "who are you") {
+    if (["who are you", "who are you?"].includes(query.toLowerCase())) {
       manualReply("who are you", loadingDiv);
       return;
     }

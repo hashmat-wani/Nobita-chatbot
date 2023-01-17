@@ -1,4 +1,4 @@
-import botIcon from "../assets/bot.svg";
+import botIcon from "../assets/nobitaBot.ico";
 import userIcon from "../assets/user.svg";
 import copyIcon from "../assets/copy.svg";
 

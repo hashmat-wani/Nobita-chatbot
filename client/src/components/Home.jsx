@@ -4,6 +4,8 @@ import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import ElectricBoltOutlinedIcon from "@mui/icons-material/ElectricBoltOutlined";
 import { chatContext } from "../context/ChatContext";
+import botIcon from "../assets/nobitaBot.ico";
+
 // comment
 const Home = () => {
   const { setInputValue } = useContext(chatContext);
@@ -14,9 +16,24 @@ const Home = () => {
       flexDirection="column"
       justify-content="center"
       // border={1}
-      sx={{ margin: { xs: "50px 12% 120px", md: "30px 12% 120px" } }}
+      sx={{
+        margin: {
+          xs: "50px 12% 120px",
+          md: "30px 12% 120px",
+        },
+      }}
     >
-      <h1 style={{ margin: "20px 0 60px", fontSize: "50px" }}>Nobita</h1>
+      <Box
+        sx={{
+          margin: "15px 0 60px",
+          display: "flex",
+          alignItems: "center",
+          columnGap: "10px",
+        }}
+      >
+        <img height="50px" src={botIcon} alt="" />
+        <h1 style={{ fontSize: "50px", margin: 0 }}>Nobita</h1>
+      </Box>
 
       <Stack
         // border={1}
