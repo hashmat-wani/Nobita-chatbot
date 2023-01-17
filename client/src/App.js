@@ -21,9 +21,10 @@ function App() {
   const [maxLength, setMaxLength] = useState(1500);
 
   useEffect(() => {
+    console.log(`${process.env.REACT_APP_PRO_API}/models`);
     // fetch(`${process.env.REACT_APP_DEV_API}/models`)
     axios
-      .get(`${process.env.REACT_APP_PRO_API}/models`)
+      .get("https://nobita-chatbot.onrender.com/models")
       // fetch(`${process.env.REACT_APP_PRO_API}/models`)
       // .then((res) => res.json())
       .then((data) => {
