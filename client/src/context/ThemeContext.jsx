@@ -11,7 +11,7 @@ const ThemeContext = ({ children }) => {
 
   return (
     <ThemeProvider theme={currentTheme}>
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <themeContext.Provider value={{ theme, toggleTheme }}>
         {children}
       </themeContext.Provider>
