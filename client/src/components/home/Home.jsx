@@ -129,7 +129,7 @@ const Home = () => {
           direction={{ sm: "column", md: "row" }}
           justifyContent="space-between"
           alignItems="flex-start"
-          spacing={2}
+          spacing={{ xs: 2, md: 2 }}
           flex={1}
           width="100%"
         >
@@ -138,13 +138,17 @@ const Home = () => {
             "May occasionally produce harmful instructions or biased content",
             "Limited knowledge of world and events after 2021",
           ].map((item, idx) => (
-            <Item
-              paddingBottom="10px !important"
+            <Box
+              textAlign="center"
+              borderRadius="6px"
+              fontSize="13px"
+              width="100%"
+              padding="10px 15px"
               key={idx}
               backgroundColor="background.accent"
             >
               {item}
-            </Item>
+            </Box>
           ))}
         </Stack>
       </Box>
@@ -155,7 +159,7 @@ const Home = () => {
 export default Home;
 
 const Item = styled(Box)(({ theme }) => ({
-  borderRadius: "5px",
+  borderRadius: "6px",
   fontSize: "13px",
   padding: "10px 15px 0",
   width: "100%",

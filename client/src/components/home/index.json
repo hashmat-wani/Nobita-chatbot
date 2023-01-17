@@ -3,11 +3,6 @@
     {
       "title": "Q&A",
       "tags": ["Answers", "Generation", "Conversation"],
-      "query": "Explain quantam computing in simple terms"
-    },
-    {
-      "title": "Q&A",
-      "tags": ["Answers", "Generation", "Conversation"],
       "query": "Create a keto meal plan for a week for 1500 kcal per day"
     },
     {
@@ -29,6 +24,11 @@
       "title": "Classification",
       "tags": ["Classification"],
       "query": "The following is a list of companies and the categories they fall into:\n\nUber, Facebook, Fedex\n\nApple\nCategory:"
+    },
+    {
+      "title": "Q&A",
+      "tags": ["Answers", "Generation", "Conversation"],
+      "query": "Explain quantam computing in simple terms"
     },
     {
       "title": "Turn by turn directions",

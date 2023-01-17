@@ -1,9 +1,9 @@
 #chat_container {
-  /* border: 3px solid blue; */
+  border: 2px solid blue;
   margin-top: 10px;
   flex: 1;
   width: 100%;
-  max-height: 100vh;
+  max-height: 80vh;
   overflow-y: scroll;
 
   display: flex;
@@ -13,7 +13,7 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 
-  padding-bottom: 200px;
+  /* padding-bottom: 200px; */
   scroll-behavior: smooth;
 }
 
@@ -41,7 +41,7 @@
 .profile {
   width: 36px;
   height: 36px;
-  /* border-radius: 5px; */
+  border-radius: 5px;
   background: #5436da;
   display: flex;
   justify-content: center;
