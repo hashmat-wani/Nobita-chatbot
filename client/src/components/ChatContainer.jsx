@@ -119,7 +119,7 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
       loadingDiv.style.color = theme === "light" ? "#383838" : "#dcdcdc";
     loader(loadingDiv, loadingInterval);
 
-    fetch("https://nobita-chatbot.onrender.com/models", {
+    fetch("https://nobita-chatbot.onrender.com", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
