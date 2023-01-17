@@ -230,7 +230,7 @@ const SideBar = ({
         >
           <List
             onClick={() => {
-              setMaxLength(1500);
+              setMaxLength(2500);
               setTemp(0);
               setCurrModel("text-davinci-003");
             }}

@@ -1,7 +1,6 @@
 import botIcon from "../assets/bot.svg";
 import userIcon from "../assets/user.svg";
 import copyIcon from "../assets/copy.svg";
-import playIcon from "../assets/play.svg";
 
 function chatStripe(isAi, value, uniqueId) {
   return `<Box class="wrapper ${isAi && "ai"}">

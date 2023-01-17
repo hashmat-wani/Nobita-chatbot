@@ -39,7 +39,7 @@ const Home = () => {
           <Typography>Examples</Typography>
           {[
             "Explain quantam computing in simple terms",
-            "Got any creative ideas for a 10 year old’s birthday?",
+            "Create a keto meal plan for a week for 1500 kcal per day",
             "How do I make an HTTP request in Javascript?",
           ].map((item, idx) => (
             <Item

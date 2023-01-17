@@ -10,7 +10,9 @@ const ChatContext = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
   const [speechLoading, setSpeechLoading] = useState(false);
-  const [speechError, setSpeechError] = React.useState(false);
+  const [speechError, setSpeechError] = useState(false);
+  const [snackBarOpenStatus, setSnackBarOpenStatus] = useState(false);
+  const [snackBarVariant, setSnackBarVariant] = useState("error");
   const loadingInterval = useRef(null);
   const typingInterval = useRef(null);
 
@@ -35,6 +37,10 @@ const ChatContext = ({ children }) => {
         setSpeechLoading,
         speechError,
         setSpeechError,
+        snackBarOpenStatus,
+        setSnackBarOpenStatus,
+        snackBarVariant,
+        setSnackBarVariant,
       }}
     >
       {children}

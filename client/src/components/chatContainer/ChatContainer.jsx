@@ -9,21 +9,21 @@ import {
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import { useRef } from "react";
-import generateUniqueId from "../utils/generateUID";
-import loader from "../utils/loader";
-import chatStripe from "../utils/chatStripe";
-import "./chatContainer.css";
+import generateUniqueId from "../../utils/generateUID";
+import loader from "../../utils/loader";
+import chatStripe from "../../utils/chatStripe";
+import "./chatContainer.style.css";
 import { useContext } from "react";
-import { chatContext } from "../context/ChatContext";
+import { chatContext } from "../../context/ChatContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CircularProgress from "@mui/material/CircularProgress";
 import CachedIcon from "@mui/icons-material/Cached";
 import StopOutlinedIcon from "@mui/icons-material/StopOutlined";
 import KeyboardVoiceOutlinedIcon from "@mui/icons-material/KeyboardVoiceOutlined";
-import typeText from "../utils/typeText";
-import { themeContext } from "../context/ThemeContext";
-import useSpeech from "../hooks/useSpeech";
-import SpeechLoading from "./speechLoading/SpeechLoading";
+import { themeContext } from "../../context/ThemeContext";
+import SpeechLoading from "../speechLoading/SpeechLoading";
+import typeText from "../../utils/typeText";
+import useSpeech from "../../hooks/useSpeech";
 
 const ChatContainer = ({ currModel, temp, maxLength }) => {
   const formRef = useRef(null);
@@ -32,7 +32,20 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
   const [lastUniqueId, setLastUniqueId] = useState("");
   const [error, setError] = useState(false);
   const startSpeak = useSpeech(handleSubmit);
-
+  const manualResponses = {
+    greeting: [
+      "Hi there! How can I help you?",
+      "Hello! How can I assist you today?",
+      "Hi! Nice to meet you",
+    ],
+    "who are you": [
+      "I am Nobita, a large language model trained by OpenAI. I am here to answer any questions you may have and assist you with any information you may need.",
+      "I am Nobita, a large language model developed by OpenAI. I am here to assist you with any questions or information you may need.",
+      "I am Nobita created by Hashmat Wani. How can I help you today?",
+      "I am Nobita, a large language model trained by OpenAI, designed by Hashmat Wani to answer questions, provide information, and assist with various tasks. Is there something specific you need help with?",
+      "Hello! I am an AI language model called Nobita, designed by Hashmat Wani to assist with a variety of tasks, such as answering questions, providing information, and generating text. Is there something specific you would like to know or talk about?",
+    ],
+  };
   const {
     setIsChatOpen,
     clearChat,
@@ -48,9 +61,39 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
     setTyping,
     typingInterval,
     speechLoading,
+    setSnackBarOpenStatus,
+    setSnackBarVariant,
   } = useContext(chatContext);
 
   const { theme } = useContext(themeContext);
+
+  const manualReply = (query, loadingDiv) => {
+    let replies = manualResponses[query];
+    let randomReply = replies[Math.floor(Math.random() * replies.length)];
+    setTimeout(() => {
+      setError(false);
+      clearInterval(loadingInterval.current);
+      loadingDiv.innerHTML = "";
+      setTyping(true);
+      typeText(
+        loadingDiv,
+        chat_container_ref.current,
+        randomReply,
+        typingInterval,
+        setLoading,
+        setTyping
+      );
+    }, 1200);
+  };
+
+  const responses = document.querySelectorAll(".ai");
+  document.querySelectorAll(".copy").forEach((el, idx) => {
+    el.addEventListener("click", () => {
+      navigator.clipboard.writeText(responses[idx].innerText);
+      setSnackBarOpenStatus(true);
+      setSnackBarVariant("copy");
+    });
+  });
 
   if (clearChat) {
     chat_container_ref.current.innerHTML = "";
@@ -79,6 +122,7 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
     query = query.trim();
     let payload = { query, model: currModel, temp, maxLength };
     if (!query) return;
+
     setLoading(true);
     setIsChatOpen(true);
     setClearChat(false);
@@ -116,8 +160,20 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
 
     if (lastInput)
       loadingDiv.style.color = theme === "light" ? "#383838" : "#dcdcdc";
+
     loader(loadingDiv, loadingInterval);
 
+    if (
+      ["hi", "hello", "hey", "hey nobita"].includes(query.toLocaleLowerCase())
+    ) {
+      manualReply("greeting", loadingDiv);
+      return;
+    }
+
+    if (query.toLocaleLowerCase() === "who are you") {
+      manualReply("who are you", loadingDiv);
+      return;
+    }
     fetch("https://nobita-chatbot.onrender.com", {
       method: "POST",
       headers: {
@@ -135,13 +191,6 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
           setError(false);
           const data = await response.json();
           const parsedData = data.bot.trim();
-          const responses = document.querySelectorAll(".ai");
-          document.querySelectorAll(".copy").forEach((el, idx) => {
-            el.addEventListener("click", () => {
-              navigator.clipboard.writeText(responses[idx].innerText);
-            });
-          });
-
           if (parsedData === "") {
             loadingDiv.innerHTML =
               "No results Found 😞\n<small>Change model</small>";
@@ -332,7 +381,10 @@ export default ChatContainer;
 
 const Container = styled("div")(({ theme, typing, load, error }) => ({
   color: theme.palette.text.primary,
-  ".ai": { backgroundColor: theme.palette.background.accent },
+  ".ai": {
+    backgroundColor: theme.palette.background.accent,
+    color: `${theme.palette.text.primary} !important`,
+  },
   ".copy": {
     display: `${typing || load || error ? "none" : "block"}`,
     cursor: "pointer",
