@@ -107,6 +107,10 @@ const SideBar = ({
               "linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0))",
             color: "text.primary",
             width: "268px",
+            // border: "2px solid red",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
           },
         }}
         variant={isMobile ? "temporary" : "permanent"}
@@ -116,7 +120,7 @@ const SideBar = ({
       >
         <ScrollBarBox
           sx={{
-            height: { xs: "calc(100vh - 109px)", md: "calc(100vh - 103px)" },
+            // height: { xs: "calc(100vh - 109px)", md: "calc(100vh - 103px)" },
             "&::-webkit-scrollbar": {
               display: { xs: "none", md: "block" },
             },
@@ -192,7 +196,6 @@ const SideBar = ({
           </FormControl> */}
 
           {/* Native */}
-
           <FormControl
             sx={{
               width: "207px",
@@ -262,13 +265,13 @@ const SideBar = ({
         </ScrollBarBox>
 
         <Box
-          width="268px"
+          width="267px"
           padding="10px"
           borderTop={1}
           borderColor="background.primary"
-          backgroundColor="background.dark"
-          position="fixed"
-          bottom={0}
+          // backgroundColor="background.dark"
+          // position="fixed"
+          // bottom={0}
         >
           <List
             onClick={() => {
