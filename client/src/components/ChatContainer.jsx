@@ -24,7 +24,6 @@ import typeText from "../utils/typeText";
 import { themeContext } from "../context/ThemeContext";
 import useSpeech from "../hooks/useSpeech";
 import SpeechLoading from "./speechLoading/SpeechLoading";
-import speak from "../hooks/speak";
 
 const ChatContainer = ({ currModel, temp, maxLength }) => {
   const formRef = useRef(null);
@@ -141,10 +140,6 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
             el.addEventListener("click", () => {
               navigator.clipboard.writeText(responses[idx].innerText);
             });
-          });
-
-          document.querySelectorAll(".play").forEach((el, idx) => {
-            el.addEventListener("click", () => speak(responses[idx].innerText));
           });
 
           if (parsedData === "") {
@@ -336,13 +331,12 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
 export default ChatContainer;
 
 const Container = styled("div")(({ theme, typing, load, error }) => ({
-  // color: theme.palette.text.primary,
+  color: theme.palette.text.primary,
   ".ai": { backgroundColor: theme.palette.background.accent },
-  ".copy-play": {
-    display: `${typing || load || error ? "none" : "flex"}`,
-    alignItems: "center",
-    columnGap: "16px",
-    "& img": { width: "15px", cursor: "pointer" },
+  ".copy": {
+    display: `${typing || load || error ? "none" : "block"}`,
+    cursor: "pointer",
+    "& img": { width: "22px" },
   },
 }));
 

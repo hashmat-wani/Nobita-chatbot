@@ -1,7 +1,5 @@
-import "./App.css";
-
 import SideBar from "./components/SideBar";
-import { Box } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import Home from "./components/Home";
 import ChatContainer from "./components/ChatContainer";
 import { useContext, useState } from "react";
@@ -49,7 +47,7 @@ function App() {
   );
   const { isChatOpen, speechError, setSpeechError } = useContext(chatContext);
   return (
-    <div className="App">
+    <AppWrapper>
       <Snackbar
         ContentProps={{
           sx: {
@@ -97,8 +95,13 @@ function App() {
           maxLength={maxLength}
         />
       </Box>
-    </div>
+    </AppWrapper>
   );
 }
 
 export default App;
+
+const AppWrapper = styled("div")({
+  display: "flex",
+  fontSize: "14px",
+});

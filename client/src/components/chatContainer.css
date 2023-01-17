@@ -81,7 +81,7 @@
 .message::-webkit-scrollbar {
   display: none;
 }
-.copy-play {
+.copy {
   align-self: flex-end;
 }
 
@@ -98,7 +98,7 @@
   .wrapper.ai {
     padding-bottom: 40px;
   }
-  .copy-play {
+  .copy {
     position: absolute;
     bottom: 15px;
     right: 20px;

@@ -14,7 +14,7 @@ function chatStripe(isAi, value, uniqueId) {
         <div class="message" id="${uniqueId}">${value}</div>
         ${
           isAi
-            ? `<div class="copy-play"><img title="play" class="play" src="${playIcon}" /> <img title="copy" class="copy" src="${copyIcon}" /></div>`
+            ? `<div class="copy"><img title="copy" src="${copyIcon}" /></div>`
             : ""
         }
       </div>
