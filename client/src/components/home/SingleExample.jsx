@@ -43,7 +43,6 @@ export default function SingleExample({
         {isMobile && (
           <KeyboardBackspaceIcon
             onClick={handleClose}
-            fontSize="large"
             sx={{
               cursor: "pointer",
               // border: "1px solid red",
