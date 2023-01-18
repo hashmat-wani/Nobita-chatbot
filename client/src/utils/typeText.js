@@ -10,6 +10,7 @@ function typeText(
   typingInterval.current = setInterval(() => {
     if (idx < text.length) {
       el.innerHTML += text[idx++];
+      chatContainer.scrollIntoView({ behaviour: "smooth" });
       chatContainer.scrollTop = chatContainer.scrollHeight;
     } else {
       clearInterval(typingInterval.current);

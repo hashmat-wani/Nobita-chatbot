@@ -1,11 +1,31 @@
 import React, { useContext, useState } from "react";
-import { Box, Stack, styled, Typography, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Button,
+  Stack,
+  styled,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import { chatContext } from "../../context/ChatContext";
 import botIcon from "../../assets/nobitaBot.ico";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import examples from "./index.json";
+import SingleExample from "./SingleExample";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Slide from "@mui/material/Slide";
+import HelpIcon from "@mui/icons-material/Help";
+import TagSharpIcon from "@mui/icons-material/TagSharp";
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 // comment
 const Tag = ({ tag }) => (
   <Box
@@ -23,7 +43,20 @@ const Tag = ({ tag }) => (
 const Home = () => {
   const { setInputValue } = useContext(chatContext);
 
-  const [showAll, setShowAll] = useState(false);
+  const [open, setOpen] = React.useState(false);
+  const [clicked, setClicked] = useState(false);
+  const handleOpen = (item) => {
+    setOpen(true);
+    setModelData(item);
+    setClicked(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const [modelData, setModelData] = useState(null);
+
+  const [showAll, setShowAll] = useState(true);
 
   const handleShowAll = () => {
     setShowAll(true);
@@ -39,14 +72,8 @@ const Home = () => {
       justify-content="center"
       rowGap="50px"
       margin="60px 8% 120px"
-      // border={1}
-      // sx={{
-      //   margin: {
-      //     xs: "50px 8% 120px",
-      //     md: "60px 8% 120px",
-      //   },
-      // }}
     >
+      {open && <SingleExample {...modelData} open={open} setOpen={setOpen} />}
       {/* Logo */}
       <Box
         // border={1}
@@ -62,7 +89,7 @@ const Home = () => {
       </Box>
 
       {/* Examples */}
-      <Box
+      {/* <Box
         // border={1}
         width="100%"
         display="flex"
@@ -98,6 +125,9 @@ const Home = () => {
                 ))}
               </Box>
               <p> {item.query}</p>
+              <Button onClick={() => handleOpen(item)}>Open modal</Button>
+
+             
             </Item>
           ))}
 
@@ -107,6 +137,79 @@ const Home = () => {
               <KeyboardArrowDownIcon />
             </div>
           )}
+        </ShowAllContainer>
+      </Box> */}
+
+      <Box
+        // border={1}
+        width="100%"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        rowGap="20px"
+        marginTop={2}
+      >
+        <Box display="flex" alignItems="center" columnGap="10px">
+          <LightModeOutlinedIcon fontSize="large" />
+          <Typography fontWeight="bold" fontSize="25px">
+            Examples
+          </Typography>
+        </Box>
+
+        <ShowAllContainer
+          isColumn={isColumn}
+          collapseHeight="600px"
+          showAll={showAll}
+        >
+          {examples.examples.map((item, idx) => (
+            <Box
+              display="flex"
+              alignItems="center"
+              columnGap="10px"
+              key={idx}
+              sx={{ cursor: "pointer" }}
+              onClick={() => handleOpen(item)}
+              // sx={{ border: "1px solid red" }}
+            >
+              <Box
+                minHeight="54px"
+                minWidth="54px"
+                backgroundColor={`${item.color}`}
+                borderRadius="5px"
+                sx={{
+                  display: "grid",
+                  placeItems: "center",
+                }}
+              >
+                <TagSharpIcon />
+              </Box>
+              <Box p="5px 0">
+                <Typography fontSize="16px" fontWeight="bold">
+                  {item.title}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    display: "-webkit-box",
+                    WebkitBoxOrient: "vertical",
+                    WebkitLineClamp: 1,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {item.tagline}
+                </Typography>
+              </Box>
+            </Box>
+          ))}
+
+          {/* {!showAll && (
+            <div onClick={handleShowAll} className="showall__button">
+              Show all&nbsp;&nbsp;
+              <KeyboardArrowDownIcon />
+            </div>
+          )} */}
         </ShowAllContainer>
       </Box>
 
@@ -182,7 +285,7 @@ const ShowAllContainer = styled("div")(
     width: "100%",
     display: "grid",
     gridTemplateColumns: `${isColumn ? "1fr" : "repeat(2, 1fr)"}`,
-    gap: "17px",
+    gap: "30px",
     overflow: "hidden",
     position: "relative",
     maxHeight: `${showAll ? "100%" : collapseHeight}`,
