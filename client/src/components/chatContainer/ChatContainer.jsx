@@ -45,6 +45,10 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
       "I am Nobita, a large language model trained by OpenAI, designed by Hashmat Wani to answer questions, provide information, and assist with various tasks. Is there something specific you need help with?",
       "Hello! I am an AI language model called Nobita, designed by Hashmat Wani to assist with a variety of tasks, such as answering questions, providing information, and generating text. Is there something specific you would like to know or talk about?",
     ],
+    "your name": [
+      "I'm Nobita, How can I help you?",
+      "My name is Nobita, How can I assist you",
+    ],
   };
   const {
     setIsChatOpen,
@@ -168,10 +172,36 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
       return;
     }
 
-    if (["who are you", "who are you?"].includes(query.toLowerCase())) {
+    if (
+      [
+        "who are you",
+        "whi are you",
+        "who r u?",
+        "who r u",
+        "who are you?",
+      ].includes(query.toLowerCase())
+    ) {
       manualReply("who are you", loadingDiv);
       return;
     }
+
+    if (
+      [
+        "what's your name?",
+        "what's your name",
+        "what is your name?",
+        "what is your name",
+        "what is ur name",
+        "your name?",
+        "your name",
+        "ur name?",
+        "ur name",
+      ].includes(query.toLowerCase())
+    ) {
+      manualReply("your name", loadingDiv);
+      return;
+    }
+
     fetch("https://nobita-chatbot.onrender.com", {
       method: "POST",
       headers: {
