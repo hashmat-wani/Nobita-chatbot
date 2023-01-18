@@ -191,8 +191,8 @@ const SideBar = ({
             />
             <FormHelperText sx={{ margin: 0 }}>
               Higher values means the model will take more risks. Try{" "}
-              <em>0.9</em> for more creative answers, and <em>0</em> for ones
-              with a well-defined answer.{" "}
+              <em>0.9</em> for more creative responses, and <em>0</em> for ones
+              with a well-defined response.{" "}
               <b>
                 We generally recommend <em>0</em>
               </b>
