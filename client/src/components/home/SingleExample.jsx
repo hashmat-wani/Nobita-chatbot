@@ -40,18 +40,6 @@ export default function SingleExample({
         keepMounted
         onClose={handleClose}
       >
-        {isMobile && (
-          <KeyboardBackspaceIcon
-            onClick={handleClose}
-            sx={{
-              cursor: "pointer",
-              // border: "1px solid red",
-
-              marginLeft: "10px",
-              marginTop: "10px",
-            }}
-          />
-        )}
         <Box
           maxWidth={`${isMobile ? "100%" : "800px"}`}
           // border={1}
@@ -60,6 +48,18 @@ export default function SingleExample({
           flexDirection="column"
           rowGap="25px"
         >
+          {isMobile && (
+            <KeyboardBackspaceIcon
+              onClick={handleClose}
+              sx={{
+                cursor: "pointer",
+                // border: "1px solid red",
+
+                // marginLeft: "10px",
+                // marginTop: "10px",
+              }}
+            />
+          )}
           {/* Header */}
           <Box
             display="flex"
