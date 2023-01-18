@@ -1,12 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  Box,
-  Button,
-  Stack,
-  styled,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Stack, styled, Typography, useMediaQuery } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
 import ElectricBoltOutlinedIcon from "@mui/icons-material/ElectricBoltOutlined";
@@ -152,9 +145,7 @@ const Home = () => {
           <Typography fontWeight="bold" fontSize="25px">
             More examples
           </Typography>
-          <Typography>
-            Explore what's possible with some example applications
-          </Typography>
+          <Typography>Explore what's possible with some examples</Typography>
         </Box>
 
         <ShowMorewExamples
