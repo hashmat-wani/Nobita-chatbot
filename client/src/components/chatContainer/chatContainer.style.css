@@ -1,9 +1,9 @@
 #chat_container {
-  border: 2px solid blue;
+  /* border: 2px solid blue; */
   margin-top: 10px;
   flex: 1;
   width: 100%;
-  max-height: 80vh;
+  max-height: 100vh;
   overflow-y: scroll;
 
   display: flex;
@@ -12,9 +12,9 @@
 
   -ms-overflow-style: none;
   scrollbar-width: none;
-
-  /* padding-bottom: 200px; */
   scroll-behavior: smooth;
+
+  padding-bottom: 200px;
 }
 
 /* hides scrollbar */

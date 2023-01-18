@@ -6,134 +6,154 @@
       "tagline": "Answer questions based on existing knowledge.",
       "tags": ["Answers", "Generation", "Conversation"],
       "query": "Create a keto meal plan for a week for 1500 kcal per day",
-      "color": "#ef4146"
+      "color": "#ef4146",
+      "response": "Monday:\n\nBreakfast: 2 eggs cooked in butter, 1/2 cup of spinach, 1/4 cup of mushrooms, and 1/4 cup of diced tomatoes.\n\nSnack: 2 ounces of almonds and 1/2 an avocado.\n\nLunch: 4 ounces of grilled chicken breast, 1/2 cup of steamed broccoli, and 1/4 cup of cooked quinoa.\n\nSnack: 2 ounces of cheese and 10 olives.\n\nDinner: 4 ounces of salmon, 1/2 cup of roasted Brussels sprouts, and 1/4 cup of cooked brown rice.\n\nTuesday:\n\nBreakfast: 3 scrambled eggs with 2 slices of bacon and 1/2 an avocado.\n\nSnack: 2 ounces of macadamia nuts and a handful of berries.\n\nLunch: 4 ounces of grilled steak, 1/2 cup of steamed asparagus, and 1/4 cup of cooked quinoa.\n\nSnack: 2 ounces of cheese and 10 olives.\nDinner: 4 ounces of baked cod, 1/2 cup roasted cauliflower, and 1/4 cup cooked brown rice.\n\nWednesday:\n\nBreakfast: 3 scrambled eggs with 2 slices turkey bacon and a handful berries.\n\nSnack: 2 ounces walnuts and a small apple.\n\nLunch: 4 ounces grilled chicken breast, ½ cup steamed green beans, ¼ cup cooked quinoa.\n\nSnack : 2 ounce cheese cubes with 10 olives\n\nDinner : 4 ounce baked salmon , ½ roasted bell peppers , ¼ cooked brown rice .\n\nThursday :\n\nBreakfast : 3 scrambled eggs with ½ avocado , ½ tomato diced .\n\nSnack : 2 ounce almonds with a small banana.\n\nLunch : 4 ounce grilled steak , ½ steamed broccoli , ¼ cooked quinoa .\n\nSnack : 2 ounce cheese cubes with 10 olives .\n\nDinner : 4 ounce baked cod , ½ roasted Brussels sprouts , ¼ cooked brown rice .\n\nFriday :\n\nBreakfast : 3 scrambled eggs with 2 slices turkey bacon & ½ avocado .\n\nSnack : 2 ounce macadamia nuts & a handful berries .\n\nLunch : 4 ounce grilled chicken breast , ½ steamed asparagus , ¼ cooked quinoa .\n\nSnack : 2 ounce cheese cubes & 10 olives .\n\nDinner : 4 ounce baked salmon , ½ roasted cauliflower , ¼ cooked brown rice .\n\nSaturday :   Breakfast : 3 scrambled eggs with spinach & mushrooms & diced tomatoes .   Snack : 2 ounce walnuts & a small apple .   Lunch : 4 ounce grilled steak , ½ steamed green beans , ¼ cooked quinoa .   Snack : 2 ounce cheese cubes & 10 olives .   Dinner : 4 ounce baked cod , ½ roasted bell peppers , ¼ cooked brown rice .    Sunday :    Breakfast : 3 scrambled eggs with bacon & spinach & mushrooms & diced tomatoes .    Snack : 2 ounce almonds & a small banana .    Lunch ; 4 ounce grilled chicken breast , ½ steamed broccoli , ¼ cooked quinoa .    Snack ; 2ounce cheese cubes & 10 olives    Dinner ; 4ounce baked salmon , ½ roasted cauliflower , ¼cooked brown rice"
     },
     {
       "title": "Grammar correction",
       "tagline": "Corrects sentences into standard English.",
       "tags": ["Transformation", "Generation"],
-      "query": "Correct this to standard English:\nShe no went to the market.",
-      "color": "#6b3ddc"
+      "query": "Correct this to standard English:\n\nShe no went to the market.",
+      "color": "#6b3ddc",
+      "response": "She did not go to the market."
+    },
+
+    {
+      "title": "Classification",
+      "tagline": "Classify items into categories via example.",
+      "tags": ["Classification"],
+      "query": "The following is a list of companies and the categories they fall into:\n\nUber, Facebook,Fedex\n\nApple\nCategory:",
+      "color": "#1cbe83",
+      "response": "Technology\n\nFacebook\nCategory: Social Media\n\nFedex\nCategory: Delivery\n\nUber\nCategory: Transport"
     },
     {
       "title": "Restaurant review creator",
       "tagline": "Turn a few words into a restaurant review.",
       "tags": ["Generation"],
-      "query": "Write a restaurant review based on these notes:\nName: The Blue Wharf\nLobster great, noisy, service polite, prices good.",
-      "color": "#ef4146"
-    },
-    {
-      "title": "Classification",
-      "tagline": "Classify items into categories via example.",
-      "tags": ["Classification"],
-      "query": "The following is a list of companies and the categories they fall into:\n\nUber, Facebook, Fedex\n\nApple\nCategory:",
-      "color": "#1cbe83"
+      "query": "Write a restaurant review based on these notes:\n\nName: The Blue Wharf\nLobster great, noisy, service polite, prices good.\n\nReview:",
+      "color": "#ef4146",
+      "response": "I recently visited The Blue Wharf and had a wonderful experience. The lobster was excellent and the prices were very good. The only downside was the noise level, but the polite service more than made up for it. Highly recommend!"
     },
     {
       "title": "English to other languages",
-      "tagline": "Translates English text into French, Spanish and Japanese.",
+      "tagline": "Translates English text into Urdu, Spanish and Hindi.",
       "tags": ["Transformation", "Generation"],
-      "query": "Translate this into 1. Urdu, 2. Spanish and 3. Punjabi:\nWhat rooms do you have available?",
-      "color": "#ef4146"
+      "query": "Translate this into 1. Urdu, 2. Spanish and 3. Hindi:\n\nWhat rooms do you have available?",
+      "color": "#ef4146",
+      "response": "1. کونسی خوشہ آپ کے پاس ہیں؟\n2.¿Qué habitaciones tienes disponibles?\n3. आपके पास कौन से कमरे हैं?"
     },
 
     {
       "title": "Turn by turn directions",
       "tagline": "Convert natural language to turn-by-turn directions.",
       "tags": ["Transformation", "Generation"],
-      "query": "Create a numbered list of turn-by-turn directions from this text:\nGo south on 95 until you hit Sunrise boulevard then take it east to us 1 and head south. Tom Jenkins bbq will be on the left after several miles.",
-      "color": "#f2a643"
-    },
-    {
-      "title": "Notes to summary",
-      "tagline": "Turn meeting notes into a summary.",
-      "tags": ["Transformation", "Generation"],
-      "query": "Convert my short hand into a first-hand account of the meeting:\nTom: Profits up 50%\nJane: New servers are online\nKjel: Need more time to fix software\nJane: Happy to help\nParkman: Beta testing almost done",
-      "color": "#ef4146"
+      "query": "Create a numbered list of turn-by-turn directions from this text:\n\nGo south on 95 until you hit Sunrise boulevard then take it east to us 1 and head south. Tom Jenkins bbq will be on the left after several miles.",
+      "color": "#f2a643",
+      "response": "1. Go south on 95\n2. Take Sunrise Boulevard east\n3. Head south on US 1\n4. Tom Jenkins BBQ will be on the left after several miles"
     },
     {
       "title": "Summarize for a 2nd grader",
       "tagline": "Translates difficult text into simpler concepts.",
       "color": "#1cbd84",
       "tags": ["Transformation", "Generation"],
-      "query": "Summarize this for a second-grade student:\nJupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.[19] When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,[20] and is on average the third-brightest natural object in the night sky after the Moon and Venus."
+      "query": "Summarize this for a second-grade student:\n\nJupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.[19] When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,[20] and is on average the third-brightest natural object in the night sky after the Moon and Venus.",
+      "response": "Jupiter is the fifth planet from the Sun and is very big and bright. It can be seen with our eyes in the night sky and it has been known since ancient times. Its name comes from the Roman god Jupiter. It is usually the third brightest object in the night sky after the Moon and Venus."
     },
     {
       "title": "Movie to Emoji",
       "tags": ["Transformation", "Generation"],
       "tagline": "Convert movie titles into emoji.",
       "color": "#dd5bdf",
-      "query": "Convert movie titles into emoji.\nBack to the Future:\nBatman:\nTransformers:\nStar Wars:"
+      "query": "Convert movie titles into emoji.\n\nBack to the Future:\nBatman:\nTransformers:\nStar Wars:",
+      "response": "🌟⭐️🚀"
     },
     {
       "title": "Analogy maker",
       "tagline": "Create analogies. Modified from a community prompt to require fewer examples.",
       "color": "#6b3cdc",
       "tags": ["Generation"],
-      "query": "Create an analogy for this phrase:\nQuestions are arrows in that:"
+      "query": "Create an analogy for this phrase:\n\nQuestions are arrows in that:",
+      "response": "Questions are like arrows in that they both have the power to pierce through the surface and uncover the truth that lies beneath."
+    },
+    {
+      "title": "Notes to summary",
+      "tagline": "Turn meeting notes into a summary.",
+      "tags": ["Transformation", "Generation"],
+      "query": "Convert my short hand into a first-hand account of the meeting:\n\nTom: Profits up 50%\nJane: New servers are online\nKjel: Need more time to fix software\nJane: Happy to help\nParkman: Beta testing almost done",
+      "color": "#ef4146",
+      "response": "At the meeting, Tom reported that profits had increased by 50%. Jane then mentioned that the new servers were online. Kjel mentioned that they needed more time to fix the software, and Jane offered to help. Finally, Parkman reported that the beta testing was almost done."
     },
     {
       "title": "Natural language to Stripe API",
       "tagline": "Create code to call to the OpenAI API using a natural language instruction.",
       "color": "#f3a73f",
       "tags": ["Code", "Transformation"],
-      "query": "Util exposes the following:\nutil.stripe() -> authenticates & returns the stripe module; usable as stripe.Charge.create etc\nimport util\nCreate a Stripe token using the users credit card: 5555-4444-3333-2222, expiration date 12 / 28, cvc 521"
+      "query": "Util exposes the following:\n\nutil.stripe() -> authenticates & returns the stripe module; usable as stripe.Charge.create etc\nimport util\nCreate a Stripe token using the users credit card: 5555-4444-3333-2222, expiration date 12 / 28, cvc 521",
+      "response": "token = util.stripe().Token.create(\ncard={\n\t'number': '5555-4444-3333-2222',\n\t'exp_month': 12,\n\t'exp_year': 28,\n\t'cvc': '521'\n},\n)"
     },
     {
       "title": "Python to natural language",
       "color": "#ef4146",
       "tagline": "Explain a piece of Python code in human understandable language.",
       "tags": ["Code", "Translation"],
-      "query": "# Python 3\ndef remove_common_prefix(x, prefix, ws_prefix):\n\tx['completion'] = x['completion'].str[len(prefix) :]\n\tif ws_prefix:\n\t\t# keep the single whitespace as prefix\n\t\tx['completion'] = ' ' + x['completion']\nreturn x\n# Explanation of what the code does"
+      "query": "# Python 3\ndef remove_common_prefix(x, prefix, ws_prefix):\n\tx['completion'] = x['completion'].str[len(prefix) :]\n\tif ws_prefix:\n\t\t# keep the single whitespace as prefix\n\t\tx['completion'] = ' ' + x['completion']\nreturn x\n\n# Explanation of what the code does",
+      "response": "The code above is a function that takes a dataframe and a prefix as input and returns a dataframe with the prefix removed from the completion column."
     },
     {
       "title": "Calculate Time Complexity",
       "color": "#f1a349",
       "tagline": "Find the time complexity of a function.",
       "tags": ["Code", "Transformation"],
-      "query": "def foo(n, k):\naccum = 0\nfor i in range(n):\n\tfor l in range(k):\n\t\taccum += i\nreturn accum\nThe time complexity of this function is"
+      "query": "def foo(n, k):\naccum = 0\nfor i in range(n):\n\tfor l in range(k):\n\t\taccum += i\nreturn accum\n\nThe time complexity of this function is",
+      "response": "O(n*k). This is because the function has two nested for loops, each of which has a time complexity of O(n) and O(k) respectively. Therefore, the total time complexity is the product of the two, which is O(n*k)."
     },
     {
       "title": "SQL request",
       "tagline": "Create simple SQL queries.",
       "color": "#6b3cdc",
       "tags": ["Transformation", "Generation", "Translation"],
-      "query": "Create a SQL request to find all users who live in California and have over 1000 credits:"
+      "query": "Create a SQL request to find all users who live in California and have over 1000 credits:",
+      "response": "SELECT *\nFROM users\nWHERE state = 'California' AND credits > 1000;"
     },
     {
       "title": "Advanced tweet classifier",
       "tagline": "Advanced sentiment detection for a piece of text",
       "color": "#6c3ddc",
       "tags": ["Classification"],
-      "query": "Classify the sentiment in these tweets:\n1. I can't stand homework\n2. This sucks. I'm bored 😠\n3. I can't wait for Halloween!!!"
+      "query": "Classify the sentiment in these tweets:\n\n1. I can't stand homework\n2. This sucks. I'm bored 😠\n3. I can't wait for Halloween!!!",
+      "response": "1. Negative\n2. Negative\n3. Positive"
     },
     {
       "title": "Mood to color",
       "tagline": "Turn a text description into a color.",
       "color": "#1abf80",
       "tags": ["Transformation", "Generation"],
-      "query": "The CSS code for a color like a blue sky at dusk:"
+      "query": "The CSS code for a color like a blue sky at dusk:",
+      "response": "#3A5F9F"
     },
     {
       "title": "Keywords",
       "color": "#e056c5",
       "tagline": "Extract keywords from a block of text.",
       "tags": ["Classification", "Transformation"],
-      "query": "Extract keywords from this text:\nBlack-on-black ware is a 20th- and 21st-century pottery tradition developed by the Puebloan Native American ceramic artists in Northern New Mexico. Traditional reduction-fired blackware has been made for centuries by pueblo artists. Black-on-black ware of the past century is produced with a smooth surface, with the designs applied through selective burnishing or the application of refractory slip. Another style involves carving or incising designs and selectively polishing the raised areas. For generations several families from Kha'po Owingeh and P'ohwhóge Owingeh pueblos have been making black-on-black ware with the techniques passed down from matriarch potters. Artists from other pueblos have also produced black-on-black ware. Several contemporary artists have created works honoring the pottery of their ancestors."
+      "query": "Extract keywords from this text:\n\nBlack-on-black ware is a 20th- and 21st-century pottery tradition developed by the Puebloan Native American ceramic artists in Northern New Mexico. Traditional reduction-fired blackware has been made for centuries by pueblo artists. Black-on-black ware of the past century is produced with a smooth surface, with the designs applied through selective burnishing or the application of refractory slip. Another style involves carving or incising designs and selectively polishing the raised areas. For generations several families from Kha'po Owingeh and P'ohwhóge Owingeh pueblos have been making black-on-black ware with the techniques passed down from matriarch potters. Artists from other pueblos have also produced black-on-black ware. Several contemporary artists have created works honoring the pottery of their ancestors.",
+      "response": "Keywords: Black-on-black ware, 20th century, 21st century, Puebloan Native American ceramic artists, Northern New Mexico, reduction-fired blackware, pueblo artists, selective burnishing, refractory slip, carving/incising designs, polishing"
     },
     {
       "title": "Ad from product description",
       "tagline": "Create product names from examples words. Influenced by a community prompt.",
       "color": "#dd5bdf",
       "tags": ["Generation"],
-      "query": "Write a creative ad for the following product to run on Facebook aimed at parents:\nProduct: Learning Room is a virtual environment to help students from kindergarten to high school excel in school."
+      "query": "Write a creative ad for the following product to run on Facebook aimed at parents:\n\nProduct: Learning Room is a virtual environment to help students from kindergarten to high school excel in school.",
+      "response": "Are you looking for a way to give your child a head start in school? Look no further than Learning Room! Our virtual environment is designed to help students from kindergarten to high school excel in their studies. Our unique platform offers personalized learning plans, interactive activities, and real-time feedback to ensure your child is getting the most out of their education. Give your child the best chance to succeed in school with Learning Room!"
     },
     {
       "title": "Third-person converter",
       "color": "#7940dd",
       "tagline": "Converts first-person POV to the third-person. This is modified from a community prompt to use fewer examples.",
       "tags": ["Transformation", "Generation", "Translation"],
-      "query": "Convert this from first-person to third person (gender female):\nI decided to make a movie about Ada Lovelace."
+      "query": "Convert this from first-person to third person (gender female):\n\nI decided to make a movie about Ada Lovelace.",
+      "response": "She decided to make a movie about Ada Lovelace."
     }
   ]
 }

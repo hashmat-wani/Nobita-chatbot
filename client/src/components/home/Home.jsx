@@ -9,54 +9,27 @@ import {
 } from "@mui/material";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
 import WarningAmberRoundedIcon from "@mui/icons-material/WarningAmberRounded";
+import ElectricBoltOutlinedIcon from "@mui/icons-material/ElectricBoltOutlined";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { chatContext } from "../../context/ChatContext";
 import botIcon from "../../assets/nobitaBot.ico";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import examples from "./index.json";
 import SingleExample from "./SingleExample";
 
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Slide from "@mui/material/Slide";
-import HelpIcon from "@mui/icons-material/Help";
 import TagSharpIcon from "@mui/icons-material/TagSharp";
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-// comment
-const Tag = ({ tag }) => (
-  <Box
-    sx={{
-      fontSize: "11px",
-      backgroundColor: "background.primary",
-      padding: "6px",
-      borderRadius: "4px",
-    }}
-  >
-    {tag}
-  </Box>
-);
 
 const Home = () => {
   const { setInputValue } = useContext(chatContext);
 
   const [open, setOpen] = React.useState(false);
-  const [clicked, setClicked] = useState(false);
   const handleOpen = (item) => {
     setOpen(true);
     setModelData(item);
-    setClicked(true);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   const [modelData, setModelData] = useState(null);
 
-  const [showAll, setShowAll] = useState(true);
+  const [showAll, setShowAll] = useState(false);
 
   const handleShowAll = () => {
     setShowAll(true);
@@ -73,73 +46,98 @@ const Home = () => {
       rowGap="50px"
       margin="60px 8% 120px"
     >
+      {/* Model */}
       {open && <SingleExample {...modelData} open={open} setOpen={setOpen} />}
+
       {/* Logo */}
       <Box
         // border={1}
         sx={{
-          // margin: "15px 0 60px",
           display: "flex",
           alignItems: "center",
-          columnGap: "10px",
+          justifyContent: "center",
+          flexDirection: "column",
         }}
       >
         <img height="50px" src={botIcon} alt="" />
         <h1 style={{ fontSize: "50px", margin: 0 }}>Nobita</h1>
       </Box>
 
-      {/* Examples */}
-      {/* <Box
+      {/* example,limitations */}
+      <Stack
         // border={1}
         width="100%"
-        display="flex"
-        flexDirection="column"
+        direction={{ sm: "column", md: "row" }}
         justifyContent="center"
-        alignItems="center"
-        rowGap="20px"
-        marginTop={2}
+        alignItems="flex-start"
+        spacing={{ xs: 4, md: 2 }}
       >
-        <Box display="flex" alignItems="center" columnGap="10px">
-          <LightModeOutlinedIcon fontSize="large" />
-          <Typography fontWeight="bold" fontSize="25px">
-            Examples
-          </Typography>
-        </Box>
-
-        <ShowAllContainer
-          isColumn={isColumn}
-          collapseHeight="600px"
-          showAll={showAll}
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+          flex={1}
+          width="100%"
         >
-          {examples.examples.map((item, idx) => (
+          <LightModeOutlinedIcon />
+          <Typography>Examples</Typography>
+          {[
+            "Explain quantam computing in simple terms",
+            "Correct this to standard English:\nShe no went to the market.",
+            "How do I make an HTTP request in Javascript?",
+          ].map((item, idx) => (
             <Item
+              hover="true"
               key={idx}
               onClick={() => {
-                setInputValue(item.query);
+                setInputValue(item);
               }}
             >
-              <h3 style={{ margin: 0, marginBottom: "10px" }}>{item.title}</h3>
-              <Box display="flex" alignItems="center" columnGap="8px">
-                {item.tags.map((tag, idx) => (
-                  <Tag key={idx} tag={tag} />
-                ))}
-              </Box>
-              <p> {item.query}</p>
-              <Button onClick={() => handleOpen(item)}>Open modal</Button>
-
-             
+              {item}
             </Item>
           ))}
+        </Stack>
+        <Stack
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+          flex={1}
+          width="100%"
+        >
+          <ElectricBoltOutlinedIcon />
+          <Typography>Capabilities</Typography>
+          {[
+            "Remembers what user said earlier in the conversation",
+            "Allows user to provide follow-up corrections",
+            "Trained to decline inappropriate requests",
+          ].map((item, idx) => (
+            <Item key={idx}>{item}</Item>
+          ))}
+        </Stack>
+        <Stack
+          display="flex"
+          direction="column"
+          justifyContent="space-between"
+          alignItems="center"
+          spacing={2}
+          flex={1}
+          width="100%"
+        >
+          <WarningAmberRoundedIcon />
+          <Typography>Limitations</Typography>
+          {[
+            "May occasionally generate incorrect information",
+            "May occasionally produce harmful instructions or biased content",
+            "Limited knowledge of world and events after 2021",
+          ].map((item, idx) => (
+            <Item key={idx}>{item}</Item>
+          ))}
+        </Stack>
+      </Stack>
 
-          {!showAll && (
-            <div onClick={handleShowAll} className="showall__button">
-              Show all&nbsp;&nbsp;
-              <KeyboardArrowDownIcon />
-            </div>
-          )}
-        </ShowAllContainer>
-      </Box> */}
-
+      {/* More examples */}
       <Box
         // border={1}
         width="100%"
@@ -147,19 +145,21 @@ const Home = () => {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        rowGap="20px"
+        rowGap="40px"
         marginTop={2}
       >
-        <Box display="flex" alignItems="center" columnGap="10px">
-          <LightModeOutlinedIcon fontSize="large" />
+        <Box textAlign="center">
           <Typography fontWeight="bold" fontSize="25px">
-            Examples
+            More examples
+          </Typography>
+          <Typography>
+            Explore what's possible with some example applications
           </Typography>
         </Box>
 
-        <ShowAllContainer
+        <ShowMorewExamples
           isColumn={isColumn}
-          collapseHeight="600px"
+          collapseHeight="500px"
           showAll={showAll}
         >
           {examples.examples.map((item, idx) => (
@@ -168,9 +168,13 @@ const Home = () => {
               alignItems="center"
               columnGap="10px"
               key={idx}
-              sx={{ cursor: "pointer" }}
+              sx={{
+                cursor: "pointer",
+                "&:hover": {
+                  transform: "translate(2px,2px)",
+                },
+              }}
               onClick={() => handleOpen(item)}
-              // sx={{ border: "1px solid red" }}
             >
               <Box
                 minHeight="54px"
@@ -182,9 +186,9 @@ const Home = () => {
                   placeItems: "center",
                 }}
               >
-                <TagSharpIcon />
+                <TagSharpIcon sx={{ color: "#fff" }} />
               </Box>
-              <Box p="5px 0">
+              <Box>
                 <Typography fontSize="16px" fontWeight="bold">
                   {item.title}
                 </Typography>
@@ -203,57 +207,13 @@ const Home = () => {
               </Box>
             </Box>
           ))}
-
-          {/* {!showAll && (
+          {!showAll && (
             <div onClick={handleShowAll} className="showall__button">
               Show all&nbsp;&nbsp;
               <KeyboardArrowDownIcon />
             </div>
-          )} */}
-        </ShowAllContainer>
-      </Box>
-
-      {/* Limitations */}
-      <Box
-        // border={1}
-        width="100%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        rowGap="10px"
-      >
-        <Box display="flex" alignItems="center" columnGap="10px">
-          <WarningAmberRoundedIcon />
-          <Typography fontSize="20px">Limitations</Typography>
-        </Box>
-        <Stack
-          display="flex"
-          direction={{ sm: "column", md: "row" }}
-          justifyContent="space-between"
-          alignItems="flex-start"
-          spacing={{ xs: 2, md: 2 }}
-          flex={1}
-          width="100%"
-        >
-          {[
-            "May occasionally generate incorrect information",
-            "May occasionally produce harmful instructions or biased content",
-            "Limited knowledge of world and events after 2021",
-          ].map((item, idx) => (
-            <Box
-              textAlign="center"
-              borderRadius="6px"
-              fontSize="13px"
-              width="100%"
-              padding="10px 15px"
-              key={idx}
-              backgroundColor="background.accent"
-            >
-              {item}
-            </Box>
-          ))}
-        </Stack>
+          )}
+        </ShowMorewExamples>
       </Box>
     </Box>
   );
@@ -261,27 +221,23 @@ const Home = () => {
 
 export default Home;
 
-const Item = styled(Box)(({ theme }) => ({
+const Item = styled(Box)(({ theme, hover }) => ({
   borderRadius: "6px",
-  fontSize: "13px",
-  padding: "10px 15px 0",
+  textAlign: "center",
+  fontSize: "14px",
+  padding: "10px 15px",
   width: "100%",
   whiteSpace: "pre-wrap",
   backgroundColor: theme.palette.background.accent,
+
   "&:hover": {
-    cursor: "pointer",
-    backgroundColor: theme.palette.background.dark,
+    cursor: `${hover === "true" && "pointer"}`,
+    backgroundColor: `${hover === "true" && theme.palette.background.dark}`,
   },
-  display: "-webkit-box",
-  WebkitBoxOrient: "vertical",
-  WebkitLineClamp: 4,
-  overflow: "hidden",
-  textOverflow: "ellipsis",
 }));
 
-const ShowAllContainer = styled("div")(
+const ShowMorewExamples = styled("div")(
   ({ theme, showAll, collapseHeight, isColumn }) => ({
-    // border: "1px solid red",
     width: "100%",
     display: "grid",
     gridTemplateColumns: `${isColumn ? "1fr" : "repeat(2, 1fr)"}`,
@@ -292,7 +248,7 @@ const ShowAllContainer = styled("div")(
     "&::before": {
       content: '""',
       width: "100%",
-      height: `${showAll ? 0 : "230px"}`,
+      height: `${showAll ? 0 : "200px"}`,
       position: "absolute",
       bottom: 0,
       background: `${

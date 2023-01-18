@@ -1,12 +1,13 @@
-import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
-import { Box, DialogActions, Typography, useMediaQuery } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import TagSharpIcon from "@mui/icons-material/TagSharp";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
+import { chatContext } from "../../context/ChatContext";
+import { forwardRef, useContext } from "react";
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
@@ -18,11 +19,33 @@ export default function SingleExample({
   query,
   color,
   tagline,
+  response,
 }) {
+  const { setInputValue } = useContext(chatContext);
+
   const isMobile = useMediaQuery("(max-width:900px)");
   const handleClose = () => {
     setOpen(false);
   };
+
+  const PromptResponseBox = ({ label }) => (
+    <Box flex={1}>
+      <Typography mb="10px" fontWeight="bold">
+        {label === "input" ? "Input" : "Sample Response"}
+      </Typography>
+
+      <Typography
+        sx={{
+          backgroundColor: "background.primary",
+          padding: "10px",
+          fontSize: "13px",
+          whiteSpace: "pre-wrap",
+        }}
+      >
+        {label === "input" ? query : response}
+      </Typography>
+    </Box>
+  );
 
   return (
     <div>
@@ -48,15 +71,12 @@ export default function SingleExample({
           flexDirection="column"
           rowGap="25px"
         >
+          {/* Back button on mobile screen */}
           {isMobile && (
             <KeyboardBackspaceIcon
               onClick={handleClose}
               sx={{
                 cursor: "pointer",
-                // border: "1px solid red",
-
-                // marginLeft: "10px",
-                // marginTop: "10px",
               }}
             />
           )}
@@ -84,10 +104,10 @@ export default function SingleExample({
                   placeItems: "center",
                 }}
               >
-                <TagSharpIcon />
+                <TagSharpIcon sx={{ color: "#fff" }} />
               </Box>
               {/* headline and tags */}
-              <Box pb="3px" border={0}>
+              <Box>
                 <Typography fontSize="18px" fontWeight="bold">
                   {title}
                 </Typography>
@@ -115,9 +135,17 @@ export default function SingleExample({
               <Button
                 variant="contained"
                 sx={{
-                  backgroundColor: "#10a37f",
+                  backgroundColor: `${color}`,
                   color: "#fff",
                   textTransform: "capitalize",
+                  ":hover": {
+                    backgroundColor: `${color}`,
+                    transform: "scale(1.01,1.01)",
+                  },
+                }}
+                onClick={() => {
+                  handleClose();
+                  setInputValue(query);
                 }}
               >
                 Open in playground
@@ -138,49 +166,16 @@ export default function SingleExample({
               display="flex"
               flexDirection={{ xs: "column", md: "row" }}
               justifyContent="space-between"
-              columnGap="30px"
+              columnGap="20px"
               rowGap="20px"
               // border={1}
             >
-              {/* Input */}
-              <Box flex={1}>
-                <Typography mb="10px" fontWeight="bold">
-                  Input
-                </Typography>
-
-                <Typography
-                  sx={{
-                    backgroundColor: "background.primary",
-                    padding: "10px",
-                    fontSize: "14px",
-                    whiteSpace: "pre-wrap",
-                    fontSize: "13px",
-                  }}
-                >
-                  {query}
-                </Typography>
-              </Box>
-
-              <Box flex={1}>
-                <Typography mb="10px" fontWeight="bold">
-                  Sample Response
-                </Typography>
-
-                <Typography
-                  sx={{
-                    backgroundColor: "background.primary",
-                    padding: "10px",
-                    fontSize: "14px",
-                    whiteSpace: "pre-wrap",
-                    fontSize: "13px",
-                  }}
-                >
-                  {query}
-                </Typography>
-              </Box>
+              {/* Sample Demo */}
+              {["input", "response"].map((label, idx) => (
+                <PromptResponseBox key={idx} label={label} />
+              ))}
             </Box>
           </Box>
-          {/* <DialogActions></DialogActions> */}
         </Box>
       </Dialog>
     </div>

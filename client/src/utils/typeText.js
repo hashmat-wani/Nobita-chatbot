@@ -17,7 +17,7 @@ function typeText(
       setLoading(false);
       setTyping(false);
     }
-  }, 20);
+  }, 15);
 }
 
 export default typeText;
