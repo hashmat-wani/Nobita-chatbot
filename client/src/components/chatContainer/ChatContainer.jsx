@@ -24,6 +24,7 @@ import { themeContext } from "../../context/ThemeContext";
 import SpeechLoading from "../speechLoading/SpeechLoading";
 import typeText from "../../utils/typeText";
 import useSpeech from "../../hooks/useSpeech";
+import { MODE, SERVER_DEV_API, SERVER_PROD_API } from "../../env";
 
 const ChatContainer = ({ currModel, temp, maxLength }) => {
   const formRef = useRef(null);
@@ -202,7 +203,7 @@ const ChatContainer = ({ currModel, temp, maxLength }) => {
       return;
     }
 
-    fetch("https://nobita-chatbot.onrender.com", {
+    fetch(`${MODE === "dev" ? SERVER_DEV_API : SERVER_PROD_API}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

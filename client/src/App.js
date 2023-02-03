@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import ChatContainer from "./components/chatContainer/ChatContainer";
 import SnackBar from "./components/SnackBar";
+import { MODE, SERVER_DEV_API, SERVER_PROD_API } from "./env";
 
 function App() {
   const [models, setModels] = useState([]);
@@ -17,7 +18,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("https://nobita-chatbot.onrender.com/models")
+      .get(`${MODE === "dev" ? SERVER_DEV_API : SERVER_PROD_API}/models`)
       .then((data) => {
         setModels(data.data.models.data);
       })

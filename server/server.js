@@ -1,18 +1,36 @@
 import express from "express";
-import * as dotenv from "dotenv";
 import cors from "cors";
 import { Configuration, OpenAIApi } from "openai";
-dotenv.config();
+import {
+  APP_PORT,
+  CLIENT_DEV_API,
+  CLIENT_PROD_API,
+  DEV_API,
+  MODE,
+  OPENAI_API_KEY,
+  OPENAI_ORGANIZATION,
+  PROD_API,
+} from "./env.js";
+
+const PORT = APP_PORT || 3000;
+
+const app = express();
+const corsOptions = {
+  origin: `${MODE === "dev" ? CLIENT_DEV_API : CLIENT_PROD_API}`,
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+  methods: "GET,POST,PUT,DELETE,PATCH",
+};
+app.use(cors(corsOptions));
+app.use(express.json());
+
+
 const configuration = new Configuration({
-  organization: "org-5aXtvxOAwSF6IJuQZ9muAG35",
-  apiKey: process.env.OPENAI_API_KEY,
+  organization: OPENAI_ORGANIZATION,
+  apiKey: OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
-
-const app = express();
-app.use(cors());
-app.use(express.json());
 
 app.get("/", async (req, res) => {
   res.status(200).send({
@@ -25,7 +43,7 @@ app.get("/models", async (req, res) => {
     const response = await openai.listEngines();
     res.status(200).json({ models: response.data });
   } catch (err) {
-    console.log({ ModelError: err });
+    res.status(500).json({ error: true, message: err.message });
   }
 });
 
@@ -47,6 +65,6 @@ app.post("/", async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log(`server is running on port http://localhost:5000`);
+app.listen(PORT, () => {
+  console.log(`server is running on ${MODE === "dev" ? DEV_API : PROD_API}`);
 });
