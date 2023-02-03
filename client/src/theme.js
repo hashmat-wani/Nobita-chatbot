@@ -19,7 +19,6 @@ export const getDesignTokens = (mode) => ({
             dark: "#202123",
             primary: "#343541",
             accent: "#3e3f4b",
-            // accent: "#e5c",
           },
           text: {
             primary: "#dcdcdc",
